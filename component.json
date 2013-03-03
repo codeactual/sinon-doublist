@@ -6,7 +6,10 @@
   "keywords": [
     "sinon",
     "test",
-    "utility"
+    "mixin",
+    "unit",
+    "spy",
+    "stub"
   ],
   "dependencies": {
     "codeactual/is": "0.1.2",
