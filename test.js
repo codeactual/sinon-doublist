@@ -48,7 +48,7 @@ describe('sinon-doublist', function() {
       should.exist(this.clock);
       if (browserEnv) {
         should.exist(this.server);
-        should.exist(this.request);
+        should.exist(this.requests);
       }
       testDone();
     });

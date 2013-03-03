@@ -32,7 +32,7 @@ mixin._createSandbox = function(sinon) {
   this.mock = bind(self.sandbox, this.sandbox.mock);
   this.clock = this.sandbox.useFakeTimers();
   this.server = this.sandbox.useFakeServer();
-  this.requests = this.sandbox.requests;
+  this.requests = this.sandbox.useFakeXMLHttpRequest();
 };
 
 mixin.restoreSandbox = function() {
