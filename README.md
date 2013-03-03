@@ -38,7 +38,7 @@ Build standalone file in `build/`:
 
 ### NPM
 
-    $ npm install codeactual-sinon-doublist
+    $ npm install sinon-doublist
 
 ## API
 
@@ -72,25 +72,22 @@ By default, also mixin a Sinon sandbox into `test` to replicate some `sinon.test
 
 Required fields:
 
-`{string} method` Stub target method name, ex. 'bind'.
+* `{string} method` Stub target method name, ex. 'bind'.
 
 Optional fields:
 
-`{object} obj` Stub target object, ex. underscore.
-`{array} args` Arguments 'method' expects to receive.
-`{string|array} spies` Stub will return an object with spies given these names.
-
-* An alternative to setting an explicit `returns`.
-
-`{mixed} returns` Stub returns this value.
-
-* An alternative to setting  `spies`.
+* `{object} obj` Stub target object, ex. underscore.
+* `{array} args` Arguments 'method' expects to receive.
+* `{string|array} spies` Stub will return an object with spies given these names.
+ * An alternative to setting an explicit `returns`.
+* `{mixed} returns` Stub returns this value.
+ * An alternative to setting  `spies`.
 
 Return:
 
-`{function} returnedSpy` or `{object} returnedSpies` Depends on whether `spies` is a string or array.
-`{function} <method>` The created stub. The property name will match the configured `method` name.
-`{object} target` Input `obj`, or `{}` if 'obj' was null.
+* `{function} returnedSpy` or `{object} returnedSpies` Depends on whether `spies` is a string or array.
+* `{function} <method>` The created stub. The property name will match the configured `method` name.
+* `{object} target` Input `obj`, or `{}` if 'obj' was null.
 
 ## License
 
