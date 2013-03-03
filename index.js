@@ -74,26 +74,22 @@ mixin.stubMany = function(obj, methods) {
  * A baz() example is _.bind().
  *
  * @param {object} config
- *   {string} method Stub target method name, ex. 'bind'.
- *   {object} [obj] Stub target object, ex. underscore.
- *   {array} [args=[]] Arguments 'method' expects to receive.
- *   {array|string} [spies] Name(s) of method(s) to add as spies
- *     in the object returned by the stub.
- *     If missing, the returned 'returnedSpies' object will be a spy.
- *     If present, the returned 'returnedSpies' object will be a hash of spies.
- *       If array, each 'spies' element will define a hash key.
- *       If string, 'spies' will define one hash key.
- *   {mixed} returns
- *     If missing, the stub will return one or more spies.
- *     If present, the stub will return this parameter.
+ *   Required:
+ *
+ *   {string} method` Stub target method name, ex. 'bind'
+ *
+ *   Optional:
+ *
+ *   {object} obj Stub target object, ex. underscore.
+ *   {array} args Arguments 'method' expects to receive.
+ *   {string|array} spies Stub will return an object with spies given these names.
+ *     An alternative to setting an explicit returns.
+ *   {mixed} returns Stub returns this value.
+ *     An alternative to setting  spies.
  * @return {object}
- *   {object|function} returnedSp{y,ies} Spy instance(s) returned by the stub.
- *     If 'spies' is a string, then it's a spy instance itself.
- *     If an array, then it's a hash of spy instances indexed by name.
- *   {function} <input 'method'> Stub instance.
- *     Reuses method name to allow more readable assertions,
- *     ex. 'stub.someFnUnderTest.should.have.been...'.
- *   {object} target Input 'obj', or {} if 'obj' was null.
+ *   {function} returnedSpy or {object} returnedSpies Depends on whether spies is a string or array.
+ *   {function} <method> The created stub. The property name will match the configured method name.
+ *   {object} target Input obj, or {} if 'obj' was null.
  * @throws Error If method not specified.
  */
 mixin.stubWithReturn = function(config) {
