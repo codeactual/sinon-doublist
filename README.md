@@ -95,7 +95,7 @@ Return:
 
 ## Tests
 
-## Browser
+### Node
 
 `npm test`
 
@@ -106,12 +106,12 @@ Return:
 * Browse `http://localhost:9000`
 * `make build && yeti test.html`
 
-# Change Log
+## Change Log
 
-## 0.1.1
+### 0.1.1
 
 * Fix: Mixing in of `clock`, `server`, `requests`
 
-## 0.1.0
+### 0.1.0
 
 * Added: `spyMany`, `stubMany`, `stubWithReturn`, `restoreSandbox`
