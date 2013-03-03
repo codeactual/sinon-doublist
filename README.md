@@ -1,6 +1,6 @@
 # sinon-doublist
 
-Storage-agnostic LRU list with async/multi-key operations.
+Sinon.JS test double mixins.
 
 [![Build Status](https://travis-ci.org/codeactual/sinon-doublist.png)](https://travis-ci.org/codeactual/sinon-doublist)
 

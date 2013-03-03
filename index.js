@@ -1,5 +1,5 @@
 /**
- * Sinon.JS test double utilities mixin.
+ * Sinon.JS test double mixins.
  *
  * Licensed under MIT.
  * Copyright (c) 2013 David Smith <https://github.com/codeactual/>

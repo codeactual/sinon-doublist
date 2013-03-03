@@ -1,7 +1,7 @@
 {
   "name": "sinon-doublist",
   "repo": "codeactual/sinon-doublist",
-  "description": "Sinon.JS test double utilities mixin",
+  "description": "Sinon.JS test double mixins",
   "version": "0.1.0",
   "keywords": [
     "sinon",
