@@ -30,6 +30,7 @@
     }
   ],
   "peerDependencies": {
+    "component": ">= 0.13.0",
     "sinon": ">= 1.6.0"
   },
   "devDependencies": {
