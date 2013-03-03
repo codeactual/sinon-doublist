@@ -27,10 +27,12 @@ var mixin = {};
 mixin._createSandbox = function(sinon) {
   var self = this;
   this.sandbox = sinon.sandbox.create();
-  sinon.defaultConfig.properties.forEach(function(name) {
-    var prop = self.sandbox[name];
-    self[name] = is.Function(prop) ? bind(self.sandbox, prop) : prop;
-  });
+  this.spy = bind(self.sandbox, this.sandbox.spy);
+  this.stub = bind(self.sandbox, this.sandbox.stub);
+  this.mock = bind(self.sandbox, this.sandbox.mock);
+  this.clock = this.sandbox.useFakeTimers();
+  this.server = this.sandbox.useFakeServer();
+  this.requests = this.sandbox.requests;
 };
 
 mixin.restoreSandbox = function() {
