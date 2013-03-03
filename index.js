@@ -36,42 +36,6 @@ mixin.restoreSandbox = function() {
 };
 
 /**
- * Spy/stub one or more methods of an object.
- *
- * @param {string} type 'spy' or 'stub'
- * @param {object} obj Double target object.
- * @param {string|array} methods One or more method names/namespaces.
- *   They do not have to exist, e.g. 'obj' and be {} for convenience.
- * @return {object} Stub(s) indexed by method name.
- */
-mixin._doubleMany = function(type, obj, methods) {
-  var self = this;
-  var doubles = {};
-  methods = [].concat(methods);
-
-  for (var m = 0; m < methods.length; m++) {
-    var method = methods[m];
-
-    // Sinon requires doubling target to exist.
-    if (!getPathValue(method, obj)) {
-      setPathValue(method, sinonDoublistNoOp, obj);
-    }
-
-    if (/\./.test(method)) { // Ex. 'a.b.c'
-      var lastNsPart = method.split('.').slice(-1);  // Ex. 'c'
-      doubles[method] = self[type](
-        getPathValue(method.split('.').slice(0, -1).join('.'), obj), // Ex. 'a.b'
-        method.split('.').slice(-1)  // Ex. 'c'
-      );
-    } else {
-      doubles[method] = self[type](obj, method);
-    }
-  }
-
-  return doubles;
-};
-
-/**
  * _doubleMany() wrapper configured for 'spy' type.
  *
  * @param {object} obj Double target object.
@@ -189,6 +153,42 @@ mixin.stubWithReturn = function(config) {
   payload.target = config.obj;
 
   return payload;
+};
+
+/**
+ * Spy/stub one or more methods of an object.
+ *
+ * @param {string} type 'spy' or 'stub'
+ * @param {object} obj Double target object.
+ * @param {string|array} methods One or more method names/namespaces.
+ *   They do not have to exist, e.g. 'obj' and be {} for convenience.
+ * @return {object} Stub(s) indexed by method name.
+ */
+mixin._doubleMany = function(type, obj, methods) {
+  var self = this;
+  var doubles = {};
+  methods = [].concat(methods);
+
+  for (var m = 0; m < methods.length; m++) {
+    var method = methods[m];
+
+    // Sinon requires doubling target to exist.
+    if (!getPathValue(method, obj)) {
+      setPathValue(method, sinonDoublistNoOp, obj);
+    }
+
+    if (/\./.test(method)) { // Ex. 'a.b.c'
+      var lastNsPart = method.split('.').slice(-1);  // Ex. 'c'
+      doubles[method] = self[type](
+        getPathValue(method.split('.').slice(0, -1).join('.'), obj), // Ex. 'a.b'
+        method.split('.').slice(-1)  // Ex. 'c'
+      );
+    } else {
+      doubles[method] = self[type](obj, method);
+    }
+  }
+
+  return doubles;
 };
 
 function sinonDoublistNoOp() {}
