@@ -24,6 +24,111 @@ describe('sinon-doublist', function() {
     done();
   });
 
+  describe('mixin', function() {
+    it('should not overwrite existing sandbox', function(testDone) {
+      var test = {spy: ''}; // Existing sandbox hint.
+      sinonDoublist(sinon, test);
+      should.not.exist(test.sandbox);
+      testDone();
+    });
+
+    it('should respect auto-sandbox opt-out', function(testDone) {
+      var test = {};
+      sinonDoublist(sinon, test, true);
+      should.not.exist(test.sandbox);
+      testDone();
+    });
+  });
+
+  describe('#_createSandbox()', function() {
+    it('should mix in new sandbox', function(testDone) {
+      should.exist(this.spy);
+      should.exist(this.stub);
+      should.exist(this.mock);
+      should.exist(this.clock);
+      if (browserEnv) {
+        should.exist(this.server);
+        should.exist(this.request);
+      }
+      testDone();
+    });
+  });
+
+  describe('#restoreSandbox()', function() {
+    it('should restore sandbox', function(testDone) {
+      var realCalled = false;
+      var obj = {fn: function() { realCalled = true; }};
+      this.stubMany(obj, 'fn');
+      obj.fn();
+      realCalled.should.equal(false);
+      this.restoreSandbox();
+      obj.fn();
+      realCalled.should.equal(true);
+      testDone();
+    });
+  });
+
+  describe('#spyMany()', function() {
+    it('should proxy to _doubleMany()', function(testDone) {
+      var realCalled = false;
+      var obj = {fn: function() { realCalled = true; }};
+      var spy = this.spyMany(obj, 'fn');
+      spy.fn();
+      realCalled.should.equal(true);
+      spy.fn.called.should.equal(true);
+      testDone();
+    });
+  });
+
+  describe('#stubMany()', function() {
+    it('should proxy to _doubleMany()', function(testDone) {
+      var realCalled = false;
+      var obj = {fn: function() { realCalled = true; }};
+      var stub = this.stubMany(obj, 'fn');
+      stub.fn();
+      realCalled.should.equal(false);
+      stub.fn.called.should.equal(true);
+      testDone();
+    });
+  });
+
+  describe('#_doubleMany()', function() {
+    it('should accept multiple method names', function(testDone) {
+      var called = [];
+      var obj = {
+        x: function() { called.push('x'); },
+        y: function() { called.push('y'); }
+      };
+      var spy = this.spyMany(obj, ['x', 'y']);
+      spy.x();
+      called.should.deep.equal(['x']);
+      spy.x.called.should.equal(true);
+      spy.y();
+      called.should.deep.equal(['x', 'y']);
+      spy.y.called.should.equal(true);
+      testDone();
+    });
+
+    it('should accept method path', function(testDone) {
+      var realCalled = false;
+      var obj = {x: {y: {z: function() { realCalled = true; }}}};
+      var stub = this.stubMany(obj, 'x.y.z');
+      stub['x.y.z']();
+      realCalled.should.equal(false);
+      stub['x.y.z'].called.should.equal(true);
+      testDone();
+    });
+
+    it('should auto-create method if needed', function(testDone) {
+      var obj = {};
+      var stub = this.stubMany(obj, 'fn');
+      stub.fn.called.should.equal(false);
+      stub.fn();
+      stub.fn.called.should.equal(true);
+      testDone();
+    });
+  });
+
   describe('#stubWithReturn()', function() {
     it('should detect unspecified method', function(testDone) {
       var self = this;
