@@ -14,8 +14,13 @@ chai.Assertion.includeStack = true;
 describe('sinon-doublist', function() {
   'use strict';
 
-  before(function(done) {
+  beforeEach(function(done) {
     sinonDoublist(sinon, this);
+    done();
+  });
+
+  afterEach(function(done) {
+    this.sandbox.restore();
     done();
   });
 
