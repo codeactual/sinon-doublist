@@ -106,4 +106,4 @@ npm test
 
 ## 0.1.0
 
-* Added: `spyMany`, `stubMany`, `stubWithReturn`
+* Added: `spyMany`, `stubMany`, `stubWithReturn`, `restoreSandbox`
