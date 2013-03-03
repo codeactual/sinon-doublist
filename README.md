@@ -93,13 +93,24 @@ Return:
 
   MIT
 
-# Tests
+## Tests
 
-```
-npm test
-```
+## Browser
+
+`npm test`
+
+### Browser via [Yeti](http://www.yeti.cx/)
+
+* `npm install yeti`
+* `yeti --server`
+* Browse `http://localhost:9000`
+* `make build && yeti test.html`
 
 # Change Log
+
+## 0.1.1
+
+* Fix: Mixing in of `clock`, `server`, `requests`
 
 ## 0.1.0
 
