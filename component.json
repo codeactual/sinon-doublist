@@ -1,0 +1,19 @@
+{
+  "name": "sinon-doublist",
+  "repo": "codeactual/sinon-doublist",
+  "description": "Sinon.JS test double utilities",
+  "version": "0.1.0",
+  "keywords": [
+    "sinon",
+    "test",
+    "utility"
+  ],
+  "dependencies": {
+    "manuelstofer/is": "1a6efc5"
+  },
+  "development": {},
+  "scripts": [
+    "index.js"
+  ],
+  "license": "MIT"
+}

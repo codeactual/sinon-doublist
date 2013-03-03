@@ -1,0 +1,42 @@
+{
+  "name": "sinon-doublist",
+  "description": "Sinon.JS test double utilities",
+  "version": "0.1.0",
+  "keywords": [
+    "sinon",
+    "test",
+    "utility"
+  ],
+  "maintainers": [
+    {
+      "name": "David Smith",
+      "web": "https://github.com/codeactual/"
+    }
+  ],
+  "contributors": [],
+  "bugs": {
+    "url": "https://github.com/codeactual/sinon-doublist/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/codeactual/sinon-doublist/blob/master/LICENSE"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://codeactual@github.com/codeactual/sinon-doublist.git"
+    }
+  ],
+  "peerDependencies": {
+    "sinon": ">= 1.6.0"
+  },
+  "devDependencies": {
+    "chai": "1.5.0",
+    "mocha": "1.8.1"
+  },
+  "scripts": {
+    "test": "make build && mocha --async-only --reporter spec test.js"
+  }
+}
