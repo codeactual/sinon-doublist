@@ -1,6 +1,6 @@
 {
   "name": "sinon-doublist",
-  "description": "Sinon.JS test double utilities",
+  "description": "Sinon.JS test double utilities mixin",
   "version": "0.1.0",
   "keywords": [
     "sinon",

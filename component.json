@@ -1,7 +1,7 @@
 {
   "name": "sinon-doublist",
   "repo": "codeactual/sinon-doublist",
-  "description": "Sinon.JS test double utilities",
+  "description": "Sinon.JS test double utilities mixin",
   "version": "0.1.0",
   "keywords": [
     "sinon",
@@ -9,7 +9,9 @@
     "utility"
   ],
   "dependencies": {
-    "manuelstofer/is": "1a6efc5"
+    "codeactual/is": "0.1.2",
+    "component/bind": "9a55368",
+    "logicalparadox/goodwin": "1.1.0"
   },
   "development": {},
   "scripts": [
