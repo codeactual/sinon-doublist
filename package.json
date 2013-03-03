@@ -10,28 +10,20 @@
     "spy",
     "stub"
   ],
-  "maintainers": [
+  "contributors": [
     {
       "name": "David Smith",
       "web": "https://github.com/codeactual/"
     }
   ],
-  "contributors": [],
   "bugs": {
     "url": "https://github.com/codeactual/sinon-doublist/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/codeactual/sinon-doublist/blob/master/LICENSE"
-    }
-  ],
-  "repositories": [
-    {
-      "type": "git",
-      "url": "https://codeactual@github.com/codeactual/sinon-doublist.git"
-    }
-  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://codeactual@github.com/codeactual/sinon-doublist.git"
+  },
   "peerDependencies": {
     "component": ">= 0.13.0",
     "sinon": ">= 1.6.0"
