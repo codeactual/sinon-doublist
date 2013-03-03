@@ -8,12 +8,12 @@
 /*jshint node:true*/
 'use strict';
 
-module.exports = function(sinon, test, noAutoSandbox) {
+module.exports = function(sinon, test, disableAutoSandbox) {
   Object.keys(mixin).forEach(function(method) {
     test[method] = bind(test, mixin[method]);
   });
-  if (!noAutoSandbox && typeof test.spy === 'undefined') {
-    test.createSandbox(sinon);
+  if (!disableAutoSandbox && typeof test.spy === 'undefined') {
+    test._createSandbox(sinon);
   }
 };
 
@@ -24,11 +24,13 @@ var setPathValue = goodwin.setPathValue;
 var getPathValue = goodwin.getPathValue;
 var mixin = {};
 
-mixin.createSandbox = function(sinon) {
+mixin._createSandbox = function(sinon) {
+  var self = this;
   this.sandbox = sinon.sandbox.create();
-  this.spy = bind(this.sandbox, this.sandbox.spy);
-  this.stub = bind(this.sandbox, this.sandbox.stub);
-  this.mock = bind(this.sandbox, this.sandbox.mock);
+  sinon.defaultConfig.properties.forEach(function(name) {
+    var prop = self.sandbox[name];
+    self[name] = is.Function(prop) ? bind(self.sandbox, prop) : prop;
+  });
 };
 
 mixin.restoreSandbox = function() {
@@ -72,8 +74,8 @@ mixin.stubMany = function(obj, methods) {
  * A baz() example is _.bind().
  *
  * @param {object} config
- *   {object} [obj] Stub target object, ex. underscore.
  *   {string} method Stub target method name, ex. 'bind'.
+ *   {object} [obj] Stub target object, ex. underscore.
  *   {array} [args=[]] Arguments 'method' expects to receive.
  *   {array|string} [spies] Name(s) of method(s) to add as spies
  *     in the object returned by the stub.
