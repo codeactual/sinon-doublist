@@ -44,7 +44,7 @@ mixin.restoreSandbox = function() {
  *   They do not have to exist, e.g. 'obj' and be {} for convenience.
  * @return {object} Stub(s) indexed by method name.
  */
-mixin.doubleMany = function(type, obj, methods) {
+mixin._doubleMany = function(type, obj, methods) {
   var self = this;
   var doubles = {};
   methods = [].concat(methods);
@@ -72,7 +72,7 @@ mixin.doubleMany = function(type, obj, methods) {
 };
 
 /**
- * doubleMany() wrapper configured for 'spy' type.
+ * _doubleMany() wrapper configured for 'spy' type.
  *
  * @param {object} obj Double target object.
  * @param {string|array} methods One or more method names/namespaces.
@@ -81,11 +81,11 @@ mixin.doubleMany = function(type, obj, methods) {
  */
 mixin.spyMany = function(obj, methods) {
   // Use call() to propagate the context bound in beforeEach().
-  return mixin.doubleMany.call(this, 'spy', obj, methods);
+  return mixin._doubleMany.call(this, 'spy', obj, methods);
 };
 
 /**
- * doubleMany() wrapper configured for 'stub' type.
+ * _doubleMany() wrapper configured for 'stub' type.
  *
  * @param {object} obj Double target object.
  * @param {string|array} methods One or more method names/namespaces.
@@ -94,7 +94,7 @@ mixin.spyMany = function(obj, methods) {
  */
 mixin.stubMany = function(obj, methods) {
   // Use call() to propagate the context bound in beforeEach().
-  return mixin.doubleMany.call(this, 'stub', obj, methods);
+  return mixin._doubleMany.call(this, 'stub', obj, methods);
 };
 
 /**
