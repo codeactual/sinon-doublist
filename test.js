@@ -25,13 +25,6 @@ describe('sinon-doublist', function() {
   });
 
   describe('mixin', function() {
-    it('should not overwrite existing sandbox', function(testDone) {
-      var test = {spy: ''}; // Existing sandbox hint.
-      sinonDoublist(sinon, test);
-      should.not.exist(test.sandbox);
-      testDone();
-    });
-
     it('should respect auto-sandbox opt-out', function(testDone) {
       var test = {};
       sinonDoublist(sinon, test, true);

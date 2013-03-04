@@ -12,7 +12,7 @@ module.exports = function(sinon, test, disableAutoSandbox) {
   Object.keys(mixin).forEach(function(method) {
     test[method] = bind(test, mixin[method]);
   });
-  if (!disableAutoSandbox && typeof test.spy === 'undefined') {
+  if (!disableAutoSandbox) {
     test._createSandbox(sinon);
   }
 };

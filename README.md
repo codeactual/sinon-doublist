@@ -109,6 +109,10 @@ Return:
 
 ## Change Log
 
+### 0.1.2
+
+* Fix: Test context could not re-create sandboxes after restoring them. Prevented fake timers from working in `beforeEach/afterEach`-style cycles.
+
 ### 0.1.1
 
 * Fix: Mixing in of `clock`, `server`, `requests`
