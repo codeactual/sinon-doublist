@@ -68,6 +68,16 @@ describe('sinon-doublist', function() {
     });
   });
 
+  describe('clock', function() {
+    it('should be fake', function(testDone) {
+      var delta = 86400 * 1000;
+      var then = Date.now();
+      this.clock.tick(delta);
+      Date.now().should.equal(then + delta);
+      testDone();
+    });
+  });
+
   describe('#spyMany()', function() {
     it('should proxy to _doubleMany()', function(testDone) {
       var realCalled = false;
