@@ -22,7 +22,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://codeactual@github.com/codeactual/sinon-doublist.git"
+    "url": "https://github.com/codeactual/sinon-doublist.git"
   },
   "peerDependencies": {
     "component": ">= 0.13.0",
