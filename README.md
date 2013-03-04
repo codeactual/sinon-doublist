@@ -97,7 +97,8 @@ Return:
 
 ### Node
 
-`npm test`
+    npm install --devDependencies
+    npm test
 
 ### Browser via [Yeti](http://www.yeti.cx/)
 
