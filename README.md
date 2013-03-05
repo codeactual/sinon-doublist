@@ -44,7 +44,7 @@ Build standalone file in `build/`:
 
 ### #SinonDoublist(sinon, test[, disableAutoSandbox=false])
 
-> Mix in #spyMany, etc. into the given `test` context object.
+> Mix in #spyMany, etc. into the given `test` context object. Ex. use in a BDD-style `beforeEach`.
 
 By default, also mixin a Sinon sandbox into `test` to replicate some `sinon.testCase` automation.
 
