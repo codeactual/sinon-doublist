@@ -1,7 +1,7 @@
 {
   "name": "sinon-doublist",
   "description": "Sinon.JS test double mixins",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "keywords": [
     "sinon",
     "test",
@@ -33,6 +33,6 @@
     "mocha": "1.8.1"
   },
   "scripts": {
-    "test": "make build && mocha --async-only --reporter spec test.js"
+    "test": "make build && mocha --async-only --reporter spec test/main.js; mocha --async-only --reporter spec test/mocha.js "
   }
 }

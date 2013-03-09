@@ -42,11 +42,15 @@ Build standalone file in `build/`:
 
 ## API
 
-### #SinonDoublist(sinon, test[, disableAutoSandbox=false])
+### #sinonDoublist(sinon, test[, disableAutoSandbox=false])
 
 > Mix in #spyMany, etc. into the given `test` context object. Ex. use in a BDD-style `beforeEach`.
 
 By default, also mixin a Sinon sandbox into `test` to replicate some `sinon.testCase` automation.
+
+### #sinonDoublist(sinon, 'mocha'[, disableAutoSandbox=false])
+
+> Same mixin operation as above but with automatic `beforeEach/afterEach` boilerplating in mocha.
 
 ### #restoreSandbox()
 
@@ -105,9 +109,13 @@ Return:
 * `npm install yeti`
 * `yeti --server`
 * Browse `http://localhost:9000`
-* `make build && yeti test.html`
+* `make build && yeti *.html`
 
 ## Change Log
+
+### 0.2.0
+
+* Add: Global injection of mixin methods for mocha via `sinonDoublist(sinon, 'mocha')`.
 
 ### 0.1.2
 

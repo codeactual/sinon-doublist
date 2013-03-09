@@ -8,7 +8,12 @@
 /*jshint node:true*/
 'use strict';
 
-module.exports = function(sinon, test, disableAutoSandbox) {
+var sinonDoublist = module.exports = function(sinon, test, disableAutoSandbox) {
+  if (typeof test === 'string') {
+    globalInjector[test](sinon, disableAutoSandbox);
+    return;
+  }
+
   Object.keys(mixin).forEach(function(method) {
     test[method] = bind(test, mixin[method]);
   });
@@ -189,6 +194,20 @@ mixin._doubleMany = function(type, obj, methods) {
   }
 
   return doubles;
+};
+
+var globalInjector = {
+  mocha: function(sinon, disableAutoSandbox) {
+    beforeEach(function(done) {
+      sinonDoublist(sinon, this, disableAutoSandbox);
+      done();
+    });
+
+    afterEach(function(done) {
+      this.sandbox.restore();
+      done();
+    });
+  }
 };
 
 function sinonDoublistNoOp() {}
