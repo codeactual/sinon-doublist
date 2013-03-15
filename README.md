@@ -104,14 +104,18 @@ Return:
     npm install --devDependencies
     npm test
 
-### Browser via [Yeti](http://www.yeti.cx/)
+### Browser via [Testacular](http://testacular.github.com/)
 
-* `npm install yeti`
-* `yeti --server`
-* Browse `http://localhost:9000`
-* `make build && yeti *.html`
+* `npm install testacular`
+* `testacular start`
+* Browse `http://localhost:9876/`
+* `make build && testacular run`
 
 ## Change Log
+
+### 0.2.1
+
+* Fix: `requests` now correctly points to `server.requests`.
 
 ### 0.2.0
 

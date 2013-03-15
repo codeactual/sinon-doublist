@@ -1,7 +1,7 @@
 {
   "name": "sinon-doublist",
   "description": "Sinon.JS test double mixins",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "keywords": [
     "sinon",
     "test",

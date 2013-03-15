@@ -37,9 +37,3 @@ describe('sinon-doublist global injection for mocha', function() {
     testDone();
   });
 });
-
-if (browserEnv) {
-  mocha.run();
-}
-
-function noOp() {}

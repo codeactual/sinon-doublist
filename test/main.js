@@ -2,6 +2,12 @@ var browserEnv = typeof window === 'object';
 
 if (browserEnv) {
   mocha.setup('bdd');
+  mocha.setup({
+    globals: [
+      'setTimeout', 'setInterval', 'clearTimeout', 'clearInterval',
+      'XMLHttpRequest'
+    ]
+  });
 } else {
   var sinon = require('sinon');
   var chai = require('chai');
@@ -44,6 +50,27 @@ describe('sinon-doublist', function() {
         should.exist(this.requests);
       }
       testDone();
+    });
+
+    it('should init fake server', function(testDone) {
+      if (!browserEnv) { testDone(); return; }
+      var payload = {foo: 'bar'};
+      var url = '/res';
+      jQuery.ajax({
+        url: url,
+        success: function(response) {
+          response.should.deep.equal(payload);
+          testDone();
+        }
+      });
+      this.server.respond([
+          200,
+          {'Content-Type': 'application/json'},
+          JSON.stringify(payload)
+        ]
+      );
+      this.requests.length.should.equal(1);
+      this.request[0].url.should.equal(url);
     });
   });
 
@@ -203,9 +230,5 @@ describe('sinon-doublist', function() {
     });
   });
 });
-
-if (browserEnv) {
-  mocha.run();
-}
 
 function noOp() {}
