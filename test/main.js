@@ -56,10 +56,13 @@ describe('sinon-doublist', function() {
       if (!browserEnv) { testDone(); return; }
       var payload = {foo: 'bar'};
       var url = '/res';
+      var self = this;
       jQuery.ajax({
         url: url,
         success: function(response) {
           response.should.deep.equal(payload);
+          self.requests.length.should.equal(1);
+          self.requests[0].url.should.equal(url);
           testDone();
         }
       });
@@ -69,8 +72,6 @@ describe('sinon-doublist', function() {
           JSON.stringify(payload)
         ]
       );
-      this.requests.length.should.equal(1);
-      this.request[0].url.should.equal(url);
     });
   });
 
