@@ -28,6 +28,7 @@ var goodwin = require('goodwin');
 var setPathValue = goodwin.setPathValue;
 var getPathValue = goodwin.getPathValue;
 var mixin = {};
+var browserEnv = typeof window === 'object';
 
 mixin._createSandbox = function(sinon) {
   var self = this;
@@ -37,7 +38,9 @@ mixin._createSandbox = function(sinon) {
   this.mock = bind(self.sandbox, this.sandbox.mock);
   this.clock = this.sandbox.useFakeTimers();
   this.server = this.sandbox.useFakeServer();
-  this.requests = this.server.requests;
+  if (browserEnv) {
+    this.requests = this.server.requests;
+  }
 };
 
 mixin.restoreSandbox = function() {
