@@ -1,5 +1,4 @@
-// Testacular configuration
-// Generated on Mon Mar 11 2013 20:23:41 GMT-0700 (PDT)
+// Karma configuration
 
 
 // base path, that will be used to resolve files and exclude

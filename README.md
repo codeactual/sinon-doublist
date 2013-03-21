@@ -119,12 +119,12 @@ Return:
     npm install --devDependencies
     npm test
 
-### Browser via [Testacular](http://testacular.github.com/)
+### Browser via [Karma](http://karma-runner.github.com/)
 
-* `npm install testacular`
-* `testacular start`
+* `npm install karma`
+* `karma start`
 * Browse `http://localhost:9876/`
-* `make build && testacular run`
+* `make build && karma run`
 
 ## Change Log
 
