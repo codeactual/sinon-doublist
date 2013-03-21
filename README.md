@@ -2,6 +2,7 @@
 
 Sinon.JS test double mixins: [spyMany](https://github.com/codeactual/sinon-doublist/#api), [stubMany](https://github.com/codeactual/sinon-doublist/#api), [stubWithReturn](https://github.com/codeactual/sinon-doublist/#api).
 
+* Optional [sinon.testCase](http://sinonjs.org/docs/#sandbox)-like auto-sandboxing.
 * Supports optional use of plain empty objects to hold method doubles.
 * Multi-method doubling via array arguments.
 * Deep-object method selection via "x.y.z" property path strings.
@@ -11,7 +12,7 @@ Sinon.JS test double mixins: [spyMany](https://github.com/codeactual/sinon-doubl
 ## Examples
 
 ```js
-sinonDoublist(sinon, 'mocha');
+sinonDoublist(sinon, 'mocha'); // Mix in function set and auto-sandbox.
 
 describe('myFunction', function() {
   it('should do something', function() {
