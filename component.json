@@ -14,7 +14,7 @@
   "dependencies": {
     "codeactual/is": "0.1.2",
     "component/bind": "9a55368",
-    "logicalparadox/goodwin": "1.1.0"
+    "qualiancy/tea-properties": "0.1.0"
   },
   "development": {},
   "scripts": [

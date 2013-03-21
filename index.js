@@ -24,9 +24,9 @@ var sinonDoublist = module.exports = function(sinon, test, disableAutoSandbox) {
 
 var is = require('is');
 var bind = require('bind');
-var goodwin = require('goodwin');
-var setPathValue = goodwin.setPathValue;
-var getPathValue = goodwin.getPathValue;
+var properties = require('tea-properties');
+var setPathValue = properties.set;
+var getPathValue = properties.get;
 var mixin = {};
 var browserEnv = typeof window === 'object';
 
@@ -134,7 +134,7 @@ mixin.stubWithReturn = function(config) {
 
     // 'a.b.c.spy1'
     if (is.string(config.spies) && /\./.test(config.spies)) {
-      setPathValue(config.spies, this.spy(), returns);
+      setPathValue(returns, config.spies, this.spy());
     } else {
       var spies = [].concat(config.spies);
       for (var s = 0; s < spies.length; s++) {
@@ -181,14 +181,14 @@ mixin._doubleMany = function(type, obj, methods) {
     var method = methods[m];
 
     // Sinon requires doubling target to exist.
-    if (!getPathValue(method, obj)) {
-      setPathValue(method, sinonDoublistNoOp, obj);
+    if (!getPathValue(obj, method)) {
+      setPathValue(obj, method, sinonDoublistNoOp);
     }
 
     if (/\./.test(method)) { // Ex. 'a.b.c'
       var lastNsPart = method.split('.').slice(-1);  // Ex. 'c'
       doubles[method] = self[type](
-        getPathValue(method.split('.').slice(0, -1).join('.'), obj), // Ex. 'a.b'
+        getPathValue(obj, method.split('.').slice(0, -1).join('.')), // Ex. 'a.b'
         method.split('.').slice(-1)  // Ex. 'c'
       );
     } else {

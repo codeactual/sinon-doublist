@@ -130,6 +130,7 @@ Return:
 ### 0.2.2
 
 * `stubWithReturn` now creates `method` if it does not exist in the target object.
+* Migrate from `logicalparadox/goodwin` component to updated/renamed `qualiancy/tea-properties`.
 
 ### 0.2.1
 
