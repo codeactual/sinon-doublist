@@ -54,7 +54,7 @@ By default, also mixin a Sinon sandbox into `test` to replicate some `sinon.test
 
 ### #restoreSandbox()
 
-> Calls sinon.sandbox#restore. Ex. use in a BDD-style `afterEach`.
+> Calls `sinon.sandbox#restore`. Ex. use in a BDD-style `afterEach`.
 
 ### Object#spyMany(obj, <name|names>)
 
@@ -72,7 +72,7 @@ By default, also mixin a Sinon sandbox into `test` to replicate some `sinon.test
 
 ### Object#stubWithReturn(config)
 
-> Wrap a withArgs() + returns() sequence.
+> Wrap a `withArgs()` + `returns()` sequence.
 
 Required fields:
 
