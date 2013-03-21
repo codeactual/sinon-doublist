@@ -24,13 +24,13 @@
     "type": "git",
     "url": "https://github.com/codeactual/sinon-doublist.git"
   },
-  "peerDependencies": {
-    "component": ">= 0.13.0",
-    "sinon": ">= 1.6.0"
+  "dependencies": {
+    "sinon": "~1.6.0"
   },
   "devDependencies": {
     "chai": "1.5.0",
-    "mocha": "1.8.1"
+    "component": "~0.13.0",
+    "mocha": "1.8.1",
   },
   "scripts": {
     "test": "make build && mocha --async-only --reporter spec test/main.js; mocha --async-only --reporter spec test/mocha.js "
