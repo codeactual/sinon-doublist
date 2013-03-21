@@ -16,20 +16,20 @@ sinonDoublist(sinon, 'mocha');
 describe('myFunction', function() {
   it('should do something', function() {
     var obj = {};
-    
+
     var spy = this.spyMany(obj, ['a.b.methodA', 'c.e.methodB', 'd.e.methodC']);
     spy['a.b.methodA'].restore();
-    
+
     obj = {methodD: function() {}};
     var stub = this.stubMany(obj, 'methodD');
     stub.methodD.returns(false);
     stub.methodD.restore();
-    
+
     obj = {};
     stub = this.stubWithReturn({
       obj: obj,
       method: 'methodD',
-      spies: ['f.e.g']
+      spies: 'f.e.g'
     });
     var spiesReturnedFromStub = obj.methodD();
     spiesReturnedFromStub.f.e.g();
