@@ -36,10 +36,6 @@ Build standalone file in `build/`:
 
     $ make dist
 
-### NPM
-
-    $ npm install sinon-doublist
-
 ## API
 
 ### #sinonDoublist(sinon, test[, disableAutoSandbox=false])
