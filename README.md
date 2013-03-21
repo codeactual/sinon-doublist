@@ -1,25 +1,39 @@
 # sinon-doublist
 
-Sinon.JS test double mixins.
+Sinon.JS test double mixins: [spyMany](https://github.com/codeactual/sinon-doublist/#api), [stubMany](https://github.com/codeactual/sinon-doublist/#api), [stubWithReturn](https://github.com/codeactual/sinon-doublist/#api).
+
+* Supports optional use of plain empty objects to hold method doubles.
+* Multi-method doubling via array arguments.
+* Deep-object method selection via "x.y.z" property path strings.
 
 [![Build Status](https://travis-ci.org/codeactual/sinon-doublist.png)](https://travis-ci.org/codeactual/sinon-doublist)
 
-## Example
+## Examples
 
 ```js
-describe('#foo()', function() {
-  beforeEach(function() {
-    sinonDoublist(sinon, this);
-  });
+sinonDoublist(sinon, 'mocha');
 
-  afterEach(function() {
-    this.sandbox.restore();
-  });
-
-  it('should make world peace', function() {
-    this.spyMany(/* ... */);
-    this.doubleMany(/* ... */);
-    this.stubWithReturn(/* ... */);
+describe('myFunction', function() {
+  it('should do something', function() {
+    var obj = {};
+    
+    var spy = this.spyMany(obj, ['a.b.methodA', 'c.e.methodB', 'd.e.methodC']);
+    spy['a.b.methodA'].restore();
+    
+    obj = {methodD: function() {}};
+    var stub = this.stubMany(obj, 'methodD');
+    stub.methodD.returns(false);
+    stub.methodD.restore();
+    
+    obj = {};
+    stub = this.stubWithReturn({
+      obj: obj,
+      method: 'methodD',
+      spies: ['f.e.g']
+    });
+    var spiesReturnedFromStub = obj.methodD();
+    spiesReturnedFromStub.f.e.g();
+    spiesReturnedFromStub.f.e.g.called.should.equal(true);
   });
 });
 ```
@@ -91,7 +105,7 @@ Return:
 
 * `{function} returnedSpy` or `{object} returnedSpies` Depends on whether `spies` is a string or array.
 * `{function} <method>` The created stub. The property name will match the configured `method` name.
-* `{object} target` Input `obj`, or `{}` if 'obj' was null.
+* `{object} target` Reference to the input `obj` or auto-creeated `{}`.
 
 ## License
 
@@ -112,6 +126,10 @@ Return:
 * `make build && testacular run`
 
 ## Change Log
+
+### 0.2.2
+
+* `stubWithReturn` now creates `method` if it does not exist in the target object.
 
 ### 0.2.1
 
