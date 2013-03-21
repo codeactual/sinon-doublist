@@ -30,7 +30,7 @@
   "devDependencies": {
     "chai": "1.5.0",
     "component": "~0.13.0",
-    "mocha": "1.8.1",
+    "mocha": "1.8.1"
   },
   "scripts": {
     "test": "make build && mocha --async-only --reporter spec test/main.js; mocha --async-only --reporter spec test/mocha.js "
