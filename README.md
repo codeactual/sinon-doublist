@@ -36,6 +36,10 @@ Build standalone file in `build/`:
 
     $ make dist
 
+## Related Components
+
+* [sinon-doublist-fs](https://github.com/codeactual/sinon-doublist-fs/): node.js `fs` stubbing.
+
 ## API
 
 ### #sinonDoublist(sinon, test[, disableAutoSandbox=false])
