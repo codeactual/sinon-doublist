@@ -117,7 +117,7 @@ mixin.stubWithReturn = function(config) {
 
   // Allow test to avoid creating the config.obj ahead of time.
   if (config.obj) {
-    stub = this.stub(config.obj, config.method);
+    stub = this.stubMany(config.obj, config.method)[config.method];
   } else {
     config.obj = {};
     stub = this.stubMany(config.obj, config.method)[config.method];

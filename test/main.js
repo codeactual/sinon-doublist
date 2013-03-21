@@ -169,6 +169,14 @@ describe('sinon-doublist', function() {
       testDone();
     });
 
+    it('should handle non-existent method', function(testDone) {
+      var obj = {};
+      var stub = this.stubWithReturn({obj: obj, method: 'foo'});
+      obj.foo();
+      stub.foo.should.have.been.called;
+      testDone();
+    });
+
     it('should handle custom target object', function(testDone) {
       var obj = {foo: function() {}};
       var stub = this.stubWithReturn({obj: obj, method: 'foo'});
