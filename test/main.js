@@ -210,6 +210,18 @@ describe('sinon-doublist', function() {
       testDone();
     });
 
+    it('should handle namespace-string spy name array', function(testDone) {
+      var stub = this.stubWithReturn({method: 'foo', spies: ['j.a.m.e.s', 'b.o.n.d']});
+      var returned = stub.target.foo();
+      returned.j.a.m.e.s.should.not.have.been.called;
+      returned.j.a.m.e.s();
+      returned.j.a.m.e.s.should.have.been.called;
+      returned.b.o.n.d.should.not.have.been.called;
+      returned.b.o.n.d();
+      returned.b.o.n.d.should.have.been.called;
+      testDone();
+    });
+
     it('should handle plain-string spy name array', function(testDone) {
       var stub = this.stubWithReturn({method: 'foo', spies: ['james', 'bond']});
       var returned = stub.target.foo();

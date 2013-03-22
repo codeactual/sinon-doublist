@@ -138,7 +138,7 @@ mixin.stubWithReturn = function(config) {
     } else {
       var spies = [].concat(config.spies);
       for (var s = 0; s < spies.length; s++) {
-        returns[spies[s]] = self.spy();
+        setPathValue(returns, spies[s], this.spy());
       }
     }
   } else {

@@ -128,6 +128,10 @@ Return:
 
 ## Change Log
 
+### 0.2.3
+
+* Add missing `stubWithReturn` support for array of spy paths in `x.y.z` format.
+
 ### 0.2.2
 
 * `stubWithReturn` now creates `method` if it does not exist in the target object.
