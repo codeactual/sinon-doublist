@@ -6,6 +6,7 @@
  */
 
 /*jshint node:true*/
+/*global beforeEach:false, afterEach:false*/
 'use strict';
 
 var sinonDoublist = module.exports = function(sinon, test, disableAutoSandbox) {
