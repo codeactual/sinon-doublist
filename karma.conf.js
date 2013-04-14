@@ -7,8 +7,6 @@ basePath = '';
 
 // list of files / patterns to load in the browser
 files = [
-  MOCHA,
-  MOCHA_ADAPTER,
   'node_modules/chai/chai.js',
   'node_modules/sinon/pkg/sinon.js',
   'dist/sinon-doublist.js',
@@ -16,6 +14,8 @@ files = [
   'test/lib/sinon-doublist-fs/index.js',
   'test/mocha.js'
 ];
+
+frameworks = ['mocha'];
 
 
 // test results reporter to use
