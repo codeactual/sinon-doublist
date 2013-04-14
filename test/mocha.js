@@ -5,7 +5,7 @@ if (browserEnv) {
 } else {
   var sinon = require('sinon');
   var chai = require('chai');
-  var sinonDoublist = require('../build/build');
+  var sinonDoublist = require('..');
 }
 
 var should = chai.should();
@@ -25,7 +25,7 @@ describe('sinon-doublist global injection for mocha', function() {
     this.target().should.equal(true);
     should.not.exist(this.target.restore);
 
-    this.stubMany(this, 'target')
+    this.stubMany(this, 'target');
     should.exist(this.target.restore);
     should.not.exist(this.target());
     testDone();

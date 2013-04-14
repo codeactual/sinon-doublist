@@ -11,7 +11,7 @@ if (browserEnv) {
 } else {
   var sinon = require('sinon');
   var chai = require('chai');
-  var sinonDoublist = require('../build/build');
+  var sinonDoublist = require('../../..');
 }
 
 var should = chai.should();

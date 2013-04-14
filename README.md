@@ -41,15 +41,13 @@ describe('myFunction', function() {
 
 ## Installation
 
-### [Component](https://github.com/component/component)
+### [NPM](https://npmjs.org/package/sinon-doublist)
 
-Install to `components/`:
+    npm install sinon-doublist
+
+### API only w/ [Component](https://github.com/component/component)
 
     $ component install codeactual/sinon-doublist
-
-Build standalone file in `build/`:
-
-    $ make dist
 
 ## Related Components
 
@@ -116,7 +114,6 @@ Return:
 
 ### Node
 
-    npm install --devDependencies
     npm test
 
 ### Browser via [Karma](http://karma-runner.github.com/)
@@ -127,6 +124,10 @@ Return:
 * `make build && karma run`
 
 ## Change Log
+
+### 0.3.0
+
+* Fix NPM compatibility.
 
 ### 0.2.3
 

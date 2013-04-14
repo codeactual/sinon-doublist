@@ -2,7 +2,7 @@
   "name": "sinon-doublist",
   "repo": "codeactual/sinon-doublist",
   "description": "Sinon.JS test double mixins",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "keywords": [
     "sinon",
     "test",
@@ -17,8 +17,9 @@
     "qualiancy/tea-properties": "0.1.0"
   },
   "development": {},
+  "main": "lib/sinon-doublist/index.js",
   "scripts": [
-    "index.js"
+    "lib/sinon-doublist/index.js"
   ],
   "license": "MIT"
 }

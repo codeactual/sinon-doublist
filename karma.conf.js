@@ -11,9 +11,9 @@ files = [
   MOCHA_ADAPTER,
   'node_modules/chai/chai.js',
   'node_modules/sinon/pkg/sinon.js',
-  'build/build.js',
+  'dist/sinon-doublist.js',
   'lib/jquery.js',
-  'test/main.js',
+  'test/lib/sinon-doublist-fs/index.js',
   'test/mocha.js'
 ];
 
