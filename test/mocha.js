@@ -5,7 +5,7 @@ if (browserEnv) {
 } else {
   var sinon = require('sinon');
   var chai = require('chai');
-  var sinonDoublist = require('..');
+  var sinonDoublist = require('..').sinonDoublist;
 }
 
 var should = chai.should();
