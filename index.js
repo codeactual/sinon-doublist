@@ -6,3 +6,4 @@
  * - Manual-injection when install w/ component.
  */
 module.exports = require('./dist/sinon-doublist');
+module.exports.requireNative = require;

@@ -9,7 +9,6 @@ if (browserEnv) {
     ]
   });
 } else {
-  var sinon = require('sinon');
   var chai = require('chai');
   var sinonDoublist = require('../../..').sinonDoublist;
 }
@@ -21,7 +20,7 @@ describe('sinon-doublist', function() {
   'use strict';
 
   beforeEach(function(done) {
-    sinonDoublist(sinon, this);
+    sinonDoublist(this);
     done();
   });
 
@@ -33,7 +32,7 @@ describe('sinon-doublist', function() {
   describe('mixin', function() {
     it('should respect auto-sandbox opt-out', function(testDone) {
       var test = {};
-      sinonDoublist(sinon, test, true);
+      sinonDoublist(test, true);
       should.not.exist(test.sandbox);
       testDone();
     });

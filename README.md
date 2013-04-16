@@ -12,7 +12,7 @@ Sinon.JS test double mixins: [spyMany](https://github.com/codeactual/sinon-doubl
 ## Examples
 
 ```js
-sinonDoublist(sinon, 'mocha'); // Mix in function set and auto-sandbox.
+sinonDoublist('mocha'); // Mix in function set and auto-sandbox.
 
 describe('myFunction', function() {
   it('should do something', function() {
@@ -55,13 +55,13 @@ describe('myFunction', function() {
 
 ## API
 
-### #sinonDoublist(sinon, test[, disableAutoSandbox=false])
+### #sinonDoublist(test[, disableAutoSandbox=false])
 
 > Mix function set into the given `test` context object. Ex. use in a BDD-style `beforeEach`.
 
 By default, also mixin a Sinon sandbox into `test` to replicate some `sinon.testCase` automation.
 
-### #sinonDoublist(sinon, 'mocha'[, disableAutoSandbox=false])
+### #sinonDoublist('mocha'[, disableAutoSandbox=false])
 
 > Same mixin operation as above but with automatic `beforeEach/afterEach` boilerplating in mocha.
 
@@ -127,6 +127,7 @@ Return:
 
 ### 0.3.0
 
+* Remove requirement that `sinon` must be passed to `sinonDoublist()`.
 * Fix NPM compatibility.
 
 ### 0.2.3

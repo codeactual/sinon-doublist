@@ -201,19 +201,20 @@
         } else {
             module.exports = {
                 sinonDoublist: sinonDoublist,
-                requireComponent: require
+                requireComponent: require,
+                requireNative: null
             };
         }
-        function sinonDoublist(sinon, test, disableAutoSandbox) {
+        function sinonDoublist(test, disableAutoSandbox) {
             if (typeof test === "string") {
-                globalInjector[test](sinon, disableAutoSandbox);
+                globalInjector[test](disableAutoSandbox);
                 return;
             }
             Object.keys(mixin).forEach(function(method) {
                 test[method] = bind(test, mixin[method]);
             });
             if (!disableAutoSandbox) {
-                test._createSandbox(sinon);
+                test._createSandbox();
             }
         }
         var is = require("is");
@@ -223,8 +224,9 @@
         var getPathValue = properties.get;
         var mixin = {};
         var browserEnv = typeof window === "object";
-        mixin._createSandbox = function(sinon) {
+        mixin._createSandbox = function() {
             var self = this;
+            var sinon = browserEnv ? window.sinon : module.exports.requireNative("sinon");
             this.sandbox = sinon.sandbox.create();
             this.spy = bind(self.sandbox, this.sandbox.spy);
             this.stub = bind(self.sandbox, this.sandbox.stub);
@@ -311,9 +313,9 @@
             return doubles;
         };
         var globalInjector = {
-            mocha: function(sinon, disableAutoSandbox) {
+            mocha: function(disableAutoSandbox) {
                 beforeEach(function(done) {
-                    sinonDoublist(sinon, this, disableAutoSandbox);
+                    sinonDoublist(this, disableAutoSandbox);
                     done();
                 });
                 afterEach(function(done) {

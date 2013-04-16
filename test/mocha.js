@@ -11,7 +11,7 @@ if (browserEnv) {
 var should = chai.should();
 chai.Assertion.includeStack = true;
 
-sinonDoublist(sinon, 'mocha');
+sinonDoublist('mocha');
 
 describe('sinon-doublist global injection for mocha', function() {
   'use strict';
