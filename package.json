@@ -37,7 +37,7 @@
     "mocha": "1.9.0"
   },
   "scripts": {
-    "test": "grunt build && mocha --async-only --reporter spec test/mocha.js; mocha --async-only --recursive --reporter spec test/lib"
+    "test": "grunt test"
   },
   "dependencies": {
     "grunt": "~0.4.1"
