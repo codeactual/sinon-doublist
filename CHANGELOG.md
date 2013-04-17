@@ -1,6 +1,5 @@
 # 0.3.0
 
-* Remove requirement that `sinon` must be passed to `sinonDoublist()`.
 * Fix NPM compatibility.
 
 # 0.2.3
