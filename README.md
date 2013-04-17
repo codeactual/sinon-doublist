@@ -45,10 +45,6 @@ describe('myFunction', function() {
 
     npm install sinon-doublist
 
-### API only w/ [Component](https://github.com/component/component)
-
-    $ component install codeactual/sinon-doublist
-
 ## Related Components
 
 * [sinon-doublist-fs](https://github.com/codeactual/sinon-doublist-fs/): node.js `fs` stubbing.
