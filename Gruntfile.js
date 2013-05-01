@@ -5,7 +5,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-shell');
 
-  var mochaShelljsOpt = {stdout: true, stderr: true};
+  var mochaShelljsOpt = {stdout: true, stderr: false};
 
   grunt.initConfig({
     jshint: {
@@ -67,12 +67,16 @@ module.exports = function(grunt) {
       test_mocha: {
         options: mochaShelljsOpt,
         command: 'mocha --colors --async-only --reporter spec test/mocha.js'
+      },
+      dox_lib: {
+        command: 'gitemplate-dox --input lib/sinon-doublist/index.js --output docs/sinon-doublist.md'
       }
     }
   });
 
   grunt.registerTask('default', ['jshint']);
+  grunt.registerTask('dox', ['shell:dox_lib']);
   grunt.registerTask('build', ['default', 'shell:build']);
-  grunt.registerTask('dist', ['default', 'shell:dist', 'uglify:dist', 'shell:shrinkwrap']);
+  grunt.registerTask('dist', ['default', 'shell:dist', 'uglify:dist', 'shell:shrinkwrap', 'dox']);
   grunt.registerTask('test', ['build', 'shell:test_lib', 'shell:test_mocha']);
 };

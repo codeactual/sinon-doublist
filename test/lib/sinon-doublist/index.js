@@ -75,20 +75,6 @@ describe('sinon-doublist', function() {
     });
   });
 
-  describe('#restoreSandbox()', function() {
-    it('should restore sandbox', function(testDone) {
-      var realCalled = false;
-      var obj = {fn: function() { realCalled = true; }};
-      this.stubMany(obj, 'fn');
-      obj.fn();
-      realCalled.should.equal(false);
-      this.restoreSandbox();
-      obj.fn();
-      realCalled.should.equal(true);
-      testDone();
-    });
-  });
-
   describe('clock', function() {
     it('should be fake', function(testDone) {
       var delta = 86400 * 1000;

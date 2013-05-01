@@ -49,58 +49,9 @@ describe('myFunction', function() {
 
 * [sinon-doublist-fs](https://github.com/codeactual/sinon-doublist-fs/): node.js `fs` stubbing.
 
-## API
+## Documentation
 
-### #sinonDoublist(sinon, test[, disableAutoSandbox=false])
-
-> Mix function set into the given `test` context object. Ex. use in a BDD-style `beforeEach`.
-
-By default, also mixin a Sinon sandbox into `test` to replicate some `sinon.testCase` automation.
-
-### #sinonDoublist(sinon, 'mocha'[, disableAutoSandbox=false])
-
-> Same mixin operation as above but with automatic `beforeEach/afterEach` boilerplating in mocha.
-
-### #restoreSandbox()
-
-> Calls `sinon.sandbox#restore`. Ex. use in a BDD-style `afterEach`.
-
-### Object#spyMany(obj, <name|names>)
-
-> Spy on one or more object methods.
-
-* Method names can use `x.y.z` paths.
-* Returns: Spies indexed by name.
-
-### Object#stubMany(obj, <name|names>)
-
-> Stub one or more object methods.
-
-* Method names can use `x.y.z` paths.
-* Returns: Stubs indexed by name.
-
-### Object#stubWithReturn(config)
-
-> Wrap a `withArgs()` + `returns()` sequence.
-
-Required fields:
-
-* `{string} method` Stub target method name, ex. 'bind'.
-
-Optional fields:
-
-* `{object} obj` Stub target object, ex. underscore.
-* `{array} args` Arguments 'method' expects to receive.
-* `{string|array} spies` Stub will return an object with spies given these names.
- * An alternative to setting an explicit `returns`.
-* `{mixed} returns` Stub returns this value.
- * An alternative to setting  `spies`.
-
-Return:
-
-* `{function} returnedSpy` or `{object} returnedSpies` Depends on whether `spies` is a string or array.
-* `{function} <method>` The created stub. The property name will match the configured `method` name.
-* `{object} target` Reference to the input `obj` or auto-creeated `{}`.
+[API](docs/sinon-doublist.md)
 
 ## License
 
