@@ -2,11 +2,16 @@ Sinon.JS test double mixins.
 
 _Source: [lib/sinon-doublist/index.js](../lib/sinon-doublist/index.js)_
 
+- [module.exports](#moduleexports)
 - [sinonDoublist](#sinondoublistsinon-test-disableautosandboxfalse)
 - [mixin.createSandbox](#mixincreatesandboxsinon)
 - [mixin.spyMany](#mixinspymanyobj-methods)
 - [mixin.stubMany](#mixinstubmanyobj-methods)
 - [mixin.stubWithReturn](#mixinstubwithreturnconfig)
+
+# module.exports()
+
+> Reference to `sinonDoublist()`.
 
 # sinonDoublist(sinon, test, [disableAutoSandbox=false])
 
