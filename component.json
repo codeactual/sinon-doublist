@@ -17,9 +17,9 @@
     "qualiancy/tea-properties": "0.1.0"
   },
   "development": {},
-  "main": "lib/component/main.js",
+  "main": "lib/sinon-doublist/index.js",
   "scripts": [
-    "lib/component/main.js"
+    "lib/sinon-doublist/index.js"
   ],
   "license": "MIT"
 }

@@ -7,11 +7,13 @@ basePath = '';
 
 // list of files / patterns to load in the browser
 files = [
+  MOCHA,
+  MOCHA_ADAPTER,
   'node_modules/chai/chai.js',
   'node_modules/sinon/pkg/sinon.js',
-  'dist/sinon-doublist.js',
   'lib/jquery.js',
-  'test/lib/sinon-doublist-fs/index.js',
+  'dist/sinon-doublist.js',
+  'test/lib/sinon-doublist/index.js',
   'test/mocha.js'
 ];
 

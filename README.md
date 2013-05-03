@@ -41,6 +41,10 @@ describe('myFunction', function() {
 
 ## Installation
 
+### [component](https://github.com/component/component)
+
+    component install codeactual/sinon-doublist
+
 ### [NPM](https://npmjs.org/package/sinon-doublist)
 
     npm install sinon-doublist
