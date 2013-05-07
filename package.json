@@ -1,7 +1,7 @@
 {
   "name": "sinon-doublist",
   "description": "Sinon.JS test double mixins",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "main": "dist/sinon-doublist.js",
   "keywords": [
     "sinon",
@@ -40,8 +40,5 @@
   },
   "scripts": {
     "test": "grunt test"
-  },
-  "dependencies": {
-    "grunt": "~0.4.1"
   }
 }

@@ -1,3 +1,7 @@
+# 0.3.2
+
+* Remove NPM shrinkwrapping.
+
 # 0.3.1
 
 * Remove `karma` as optional dependency.
