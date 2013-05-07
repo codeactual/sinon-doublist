@@ -1,3 +1,7 @@
+# 0.3.1
+
+* Remove `karma` as optional dependency.
+
 # 0.3.0
 
 * Fix NPM compatibility.
