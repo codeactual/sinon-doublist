@@ -66,7 +66,7 @@ module.exports = function(grunt) {
         command: 'mocha --colors --async-only --reporter spec test/mocha.js'
       },
       dox_lib: {
-        command: 'gitemplate-dox --input lib/sinon-doublist/index.js --output docs/sinon-doublist.md'
+        command: 'apidox --input lib/sinon-doublist/index.js --output docs/sinon-doublist.md'
       }
     }
   });
