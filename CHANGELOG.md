@@ -1,3 +1,7 @@
+# 0.3.3
+
+* Upgrade `apidox`.
+
 # 0.3.2
 
 * Remove NPM shrinkwrapping.
