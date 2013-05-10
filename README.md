@@ -100,7 +100,7 @@ describe('myFunction', function() {
 * `npm install karma`
 * `karma start`
 * Browse `http://localhost:9876/`
-* `make build && karma run`
+* `grunt build && karma run`
 
 ### jQuery 2.0
 
