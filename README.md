@@ -11,60 +11,76 @@
 
 ## Examples
 
-### `spyMany()`
-
-Create spies for multiple methods, even though the latter do not exist yet. 
+### Mixin (recommended)
 
 ```js
-sinonDoublist(sinon, 'mocha'); // Mix in function set and auto-sandbox.
+sinonDoublist(sinon, 'mocha');
 
 describe('myFunction', function() {
   it('should do something', function() {
-    var spy = this.spyMany({}, ['a.b.methodA', 'c.e.methodB', 'd.e.methodC']);
-    spy['a.b.methodA'].restore();
+    // this.spyMany()
+    // this.stubMany()
+    // this.stubWithReturn()
   });
 });
+```
+
+### Mixin (manual)
+
+```js
+describe('myFunction', function() {
+  beforeEach(function() {
+    sinonDoublist(sinon, this);
+  });
+  
+  afterEach(function() {
+    this.sandbox.restore();
+  });
+  
+  it('should do something', function() {
+    // this.spyMany()
+    // this.stubMany()
+    // this.stubWithReturn()
+  });
+});
+```
+
+### `spyMany()`
+
+Creates spies for multiple methods, even though the latter do not exist yet. 
+
+```js
+var spy = this.spyMany({}, ['a.b.methodA', 'c.e.methodB', 'd.e.methodC']);
+spy['a.b.methodA'].restore();
 ```
 
 ### `stubMany()`
 
-Create a stub for method `foo()` that returns `false` only if called with argument 'bar'.
+Creates a stub for method `foo()` that returns `false` only if called with argument 'bar'.
 
 ```js
-sinonDoublist(sinon, 'mocha'); // Mix in function set and auto-sandbox.
-
-describe('myFunction', function() {
-  it('should do something', function() {
-    var obj = {};
-    var stub = this.stubMany(obj, 'foo');
-    stub.foo.withArgs('bar').returns(false);
-    stub.foo.restore();
-  });
-});
+var obj = {};
+var foo = this.stubMany(obj, 'foo').foo;
+foo.withArgs('bar').returns(false);
+foo.restore();
 ```
 
 ### `stubWithReturn()`
 
-Create a stub that, if called with argument 'foo', returns object containing a spy at path `x.y.z`.
+Creates a stub that, if called with argument 'foo', returns object containing a spy at path `x.y.z`.
 
 ```js
-sinonDoublist(sinon, 'mocha'); // Mix in function set and auto-sandbox.
+var obj = {};
 
-describe('myFunction', function() {
-  it('should do something', function() {
-    var obj = {};
-
-    stub = this.stubWithReturn({
-      obj: obj,
-      args: ['foo']
-      method: 'methodD',
-      spies: 'x.y.z'
-    });
-    var spiesReturnedFromStub = obj.methodD();
-    spiesReturnedFromStub.x.y.z('foo');
-    spiesReturnedFromStub.x.y.z.called.should.equal(true);
-  });
+stub = this.stubWithReturn({
+  obj: obj,
+  args: ['foo']
+  method: 'methodD',
+  spies: 'x.y.z'
 });
+var spiesReturnedFromStub = obj.methodD();
+spiesReturnedFromStub.x.y.z('foo');
+spiesReturnedFromStub.x.y.z.called.should.equal(true);
 ```
 
 ## Installation
