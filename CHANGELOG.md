@@ -1,3 +1,8 @@
+# 0.4.0
+
+* Upgrade `sinon` peer dependency to `~1.7.2`.
+* Upgrade jQuery fixture to `2.0.0`.
+
 # 0.3.3
 
 * Upgrade `apidox`.

@@ -73,3 +73,9 @@ describe('myFunction', function() {
 * `karma start`
 * Browse `http://localhost:9876/`
 * `make build && karma run`
+
+### jQuery 2.0
+
+Custom [build](lib/jquery.js) used in `karma` test:
+
+    grunt custom:-sizzle,-css,-effects,-offset,-dimensions,-deprecated,-ajax/script,-ajax/jsonp,-wrap,-event-alias
