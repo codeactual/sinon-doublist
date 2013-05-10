@@ -1,6 +1,6 @@
 # sinon-doublist
 
-[Sinon.JS](http://sinonjs.org/) test double mixins: `spyMany`, `stubMany`, `stubWithReturn`
+[Sinon.JS](http://sinonjs.org/) test double mixins: [spyMany](#spymany), [stubMany](#stubmany), [stubWithReturn](#stubwithreturn)
 
 * Double multiple methods in one call
 * [sinon.testCase](http://sinonjs.org/docs/#sandbox)-like auto-sandboxing
@@ -13,7 +13,7 @@
 
 ### `spyMany()`
 
-Create spies for multiple methods, even though the latter do not exist yet.
+Create spies for multiple methods, even though the latter do not exist yet. 
 
 ```js
 sinonDoublist(sinon, 'mocha'); // Mix in function set and auto-sandbox.
