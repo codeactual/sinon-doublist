@@ -22,7 +22,6 @@ _Source: [lib/sinon-doublist/index.js](../lib/sinon-doublist/index.js)_
 - `{object} sinon`
 - `{object} test`
 - `{boolean} [disableAutoSandbox=false]`
-
   - `true`: Manually augment `test` later via `test.createSandbox()`
   - `false`: Immediate augment `test` with `spy`, `stub`, etc.
 
@@ -44,7 +43,6 @@ To restore it: `this.sandbox.restore()`
 
 - `{object} obj` Double target object
 - `{string | array} methods` One or more method names/paths
-
   - They do not have to exist, e.g. `obj` may be `{}` for convenience.
   - Accepts 'x.y.z' property paths.
 
@@ -60,7 +58,6 @@ To restore it: `this.sandbox.restore()`
 
 - `{object} obj` Double target object
 - `{string | array} methods` One or more method names/paths
-
   - They do not have to exist, e.g. `obj` may be `{}` for convenience.
   - Accepts 'x.y.z' property paths.
 
