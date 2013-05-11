@@ -21,8 +21,8 @@ _Source: [lib/sinon-doublist/index.js](../lib/sinon-doublist/index.js)_
 
 - `{object} sinon`
 - `{string | object} test`
-  - `{object}` Current test context, ex. `this` inside a 'before each' hook, to receive mixins
-  - `{string}` Name of supported adapter which will auto-create hooks and setup/teardown mixins
+  - `{object}` Current test context, ex. `this` inside a 'before each' hook, to receive the sandbox/mixins
+  - `{string}` Name of supported adapter which will automatically set up and tear down the sandbox/mixins
   - Adapters: 'mocha'
 
 - `{boolean} [disableAutoSandbox=false]`
@@ -45,10 +45,10 @@ To restore: `this.sandbox.restore()`
 
 **Parameters:**
 
-- `{object} obj` Double target object
-- `{string | array} methods` One or more method names/paths
+- `{object} obj` Target object
+- `{string | array} methods`
   - They do not have to exist, e.g. `obj` may be `{}` for convenience.
-  - Accepts 'x.y.z' property paths.
+  - Accepts `x.y.z` property paths.
 
 **Return:**
 
@@ -60,10 +60,10 @@ To restore: `this.sandbox.restore()`
 
 **Parameters:**
 
-- `{object} obj` Double target object
-- `{string | array} methods` One or more method names/paths
+- `{object} obj` Target object
+- `{string | array} methods`
   - They do not have to exist, e.g. `obj` may be `{}` for convenience.
-  - Accepts 'x.y.z' property paths.
+  - Accepts `x.y.z` property paths.
 
 **Return:**
 
@@ -75,15 +75,15 @@ To restore: `this.sandbox.restore()`
 
 **Optional features:**
 
-- Instruct the stub to return an object with one or more that you can inspect later.
+- Instruct the stub to return an object with one or more spies that you can inspect later.
 - Neither the target method(s), nor target object, need to preexist.
 
 **Example use case:**
 
-The test subject is lib function `foo()` calling `bar()`
-with expected arguments. But one of the arguments to `bar()`
-is the return value of `baz()`. Use this helper to stub `baz()`
-out of the picture to focus on the `foo()` and `bar()` relationship.
+The test subject is a lib function `foo()` calling `bar()` with expected arguments.
+But one of the arguments to `bar()` is the return value of a 3rd method, `baz()`.
+`baz()` is irrelevant to this test, so use this helper to stub `baz()` out
+of the picture to focus on the `foo()-bar()` relationship.
 
 **Required `config`:**
 
@@ -106,7 +106,7 @@ out of the picture to focus on the `foo()` and `bar()` relationship.
 
 `{object}` Properties depend on configuration.
 
-- `{function} returnedSpy` **OR** `{object} returnedSpies`. Depends on whether `spies` is a string or array.
+- `{function} returnedSpy` **OR** `{object} returnedSpies`. Depends on whether `spies` is a `string` or `array`.
 - `{function} &lt;method&gt;` The created stub(s). The property name(s) will match `method`.
 - `{object} target` Input `obj`, or `{}` if `obj` was falsey
 
