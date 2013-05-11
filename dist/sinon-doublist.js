@@ -199,7 +199,7 @@
         module.exports = sinonDoublist;
         function sinonDoublist(sinon, test, disableAutoSandbox) {
             if (typeof test === "string") {
-                globalInjector[test](sinon, disableAutoSandbox);
+                adapters[test](sinon, disableAutoSandbox);
                 return;
             }
             Object.keys(mixin).forEach(function(method) {
@@ -300,7 +300,7 @@
             }
             return doubles;
         };
-        var globalInjector = {
+        var adapters = {
             mocha: function(sinon, disableAutoSandbox) {
                 beforeEach(function(done) {
                     sinonDoublist(sinon, this, disableAutoSandbox);
