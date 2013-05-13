@@ -4,12 +4,12 @@ _Source: [lib/sinon-doublist/index.js](../lib/sinon-doublist/index.js)_
 
 <a name="tableofcontents"></a>
 
-- <a name="toc_module"></a>[module.exports](#moduleexports)
-- <a name="toc_sinondoublist"></a>[sinonDoublist](#sinondoublistsinon-test-disableautosandboxfalse)
-- <a name="toc_mixin"></a>[mixin.createSandbox](#mixincreatesandboxsinon)
-- [mixin.spyMany](#mixinspymanyobj-methods)
-- [mixin.stubMany](#mixinstubmanyobj-methods)
-- [mixin.stubWithReturn](#mixinstubwithreturnconfig)
+- <a name="toc_moduleexports"></a><a name="toc_module"></a>[module.exports](#moduleexports)
+- <a name="toc_sinondoublistsinon-test-disableautosandboxfalse"></a>[sinonDoublist](#sinondoublistsinon-test-disableautosandboxfalse)
+- <a name="toc_mixincreatesandboxsinon"></a><a name="toc_mixin"></a>[mixin.createSandbox](#mixincreatesandboxsinon)
+- <a name="toc_mixinspymanyobj-methods"></a>[mixin.spyMany](#mixinspymanyobj-methods)
+- <a name="toc_mixinstubmanyobj-methods"></a>[mixin.stubMany](#mixinstubmanyobj-methods)
+- <a name="toc_mixinstubwithreturnconfig"></a>[mixin.stubWithReturn](#mixinstubwithreturnconfig)
 
 <a name="module"></a>
 
