@@ -315,10 +315,13 @@
         function sinonDoublistNoOp() {}
     });
     require.alias("codeactual-is/index.js", "sinon-doublist/deps/is/index.js");
+    require.alias("codeactual-is/index.js", "is/index.js");
     require.alias("manuelstofer-each/index.js", "codeactual-is/deps/each/index.js");
     require.alias("component-bind/index.js", "sinon-doublist/deps/bind/index.js");
+    require.alias("component-bind/index.js", "bind/index.js");
     require.alias("qualiancy-tea-properties/lib/properties.js", "sinon-doublist/deps/tea-properties/lib/properties.js");
     require.alias("qualiancy-tea-properties/lib/properties.js", "sinon-doublist/deps/tea-properties/index.js");
+    require.alias("qualiancy-tea-properties/lib/properties.js", "tea-properties/index.js");
     require.alias("qualiancy-tea-properties/lib/properties.js", "qualiancy-tea-properties/index.js");
     require.alias("sinon-doublist/lib/sinon-doublist/index.js", "sinon-doublist/index.js");
     if (typeof exports == "object") {
@@ -328,6 +331,6 @@
             return require("sinon-doublist");
         });
     } else {
-        window["sinonDoublist"] = require("sinon-doublist");
+        this["sinonDoublist"] = require("sinon-doublist");
     }
 })();

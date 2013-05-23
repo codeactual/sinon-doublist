@@ -1,3 +1,7 @@
+# 0.4.1
+
+* chore(npm): Upgrade outdated dev dependencies
+
 # 0.4.0
 
 * Upgrade `sinon` peer dependency to `~1.7.2`.
