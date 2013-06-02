@@ -3,9 +3,9 @@ module.exports = function(grunt) {
 
   require('grunt-horde')
     .create(grunt)
-    .demand('projName', 'sinon-doublist')
-    .demand('instanceName', 'sinonDoublist')
-    .demand('klassName', 'sinonDoublist')
+    .demand('initConfig.projName', 'sinon-doublist')
+    .demand('initConfig.instanceName', 'sinonDoublist')
+    .demand('initConfig.klassName', 'sinonDoublist')
     .loot('node-component-grunt')
     .loot('node-lib-grunt')
     .loot('./config/grunt')

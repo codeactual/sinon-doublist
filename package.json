@@ -37,7 +37,7 @@
     "grunt-contrib-uglify": "~0.2.0",
     "grunt-shell": "~0.2.2",
     "mocha": "~1.10.0",
-    "grunt-horde": "~0.2.1",
+    "grunt-horde": "~0.3.0",
     "node-component-grunt": "git://github.com/codeactual/node-component-grunt.git",
     "node-lib-grunt": "git://github.com/codeactual/node-lib-grunt.git"
   },
