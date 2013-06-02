@@ -9,5 +9,6 @@ module.exports = function(grunt) {
     .loot('node-component-grunt')
     .loot('node-lib-grunt')
     .loot('./config/grunt')
+    .home(__dirname)
     .attack();
 };
