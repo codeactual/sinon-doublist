@@ -11,7 +11,9 @@ if (browserEnv) {
 } else {
   var chai = require('chai');
   var sinon = require('sinon');
+  var sinonChai = require('sinon-chai');
   var sinonDoublist = require('../../..');
+  chai.use(sinonChai);
 }
 
 var should = chai.should();
@@ -31,16 +33,15 @@ describe('sinon-doublist', function() {
   });
 
   describe('mixin', function() {
-    it('should respect auto-sandbox opt-out', function(testDone) {
+    it('should respect auto-sandbox opt-out', function() {
       var test = {};
       sinonDoublist(sinon, test, true);
       should.not.exist(test.sandbox);
-      testDone();
     });
   });
 
-  describe('#_createSandbox()', function() {
-    it('should mix in new sandbox', function(testDone) {
+  describe('#_createSandbox', function() {
+    it('should mix in new sandbox', function() {
       should.exist(this.spy);
       should.exist(this.stub);
       should.exist(this.mock);
@@ -49,7 +50,6 @@ describe('sinon-doublist', function() {
         should.exist(this.server);
         should.exist(this.requests);
       }
-      testDone();
     });
 
     it('should init fake server', function(testDone) {
@@ -76,41 +76,38 @@ describe('sinon-doublist', function() {
   });
 
   describe('clock', function() {
-    it('should be fake', function(testDone) {
+    it('should be fake', function() {
       var delta = 86400 * 1000;
       var then = Date.now();
       this.clock.tick(delta);
       Date.now().should.equal(then + delta);
-      testDone();
     });
   });
 
-  describe('#spyMany()', function() {
-    it('should proxy to _doubleMany()', function(testDone) {
+  describe('#spyMany', function() {
+    it('should proxy to _doubleMany', function() {
       var realCalled = false;
       var obj = {fn: function() { realCalled = true; }};
       var spy = this.spyMany(obj, 'fn');
       spy.fn();
       realCalled.should.equal(true);
       spy.fn.called.should.equal(true);
-      testDone();
     });
   });
 
-  describe('#stubMany()', function() {
-    it('should proxy to _doubleMany()', function(testDone) {
+  describe('#stubMany', function() {
+    it('should proxy to _doubleMany', function() {
       var realCalled = false;
       var obj = {fn: function() { realCalled = true; }};
       var stub = this.stubMany(obj, 'fn');
       stub.fn();
       realCalled.should.equal(false);
       stub.fn.called.should.equal(true);
-      testDone();
     });
   });
 
-  describe('#_doubleMany()', function() {
-    it('should accept multiple method names', function(testDone) {
+  describe('#_doubleMany', function() {
+    it('should accept multiple method names', function() {
       var called = [];
       var obj = {
         x: function() { called.push('x'); },
@@ -123,80 +120,71 @@ describe('sinon-doublist', function() {
       spy.y();
       called.should.deep.equal(['x', 'y']);
       spy.y.called.should.equal(true);
-      testDone();
     });
 
-    it('should accept method path', function(testDone) {
+    it('should accept method path', function() {
       var realCalled = false;
       var obj = {x: {y: {z: function() { realCalled = true; }}}};
       var stub = this.stubMany(obj, 'x.y.z');
       stub['x.y.z']();
       realCalled.should.equal(false);
       stub['x.y.z'].called.should.equal(true);
-      testDone();
     });
 
-    it('should auto-create method if needed', function(testDone) {
+    it('should auto-create method if needed', function() {
       var obj = {};
       var stub = this.stubMany(obj, 'fn');
       stub.fn.called.should.equal(false);
       stub.fn();
       stub.fn.called.should.equal(true);
-      testDone();
     });
   });
 
-  describe('#stubWithReturn()', function() {
-    it('should detect unspecified method', function(testDone) {
+  describe('#stubWithReturn', function() {
+    it('should detect unspecified method', function() {
       var self = this;
       (function() {
         self.stubWithReturn();
       }).should.Throw(Error, 'method not specified');
-      testDone();
     });
 
-    it('should handle non-existent method', function(testDone) {
+    it('should handle non-existent method', function() {
       var obj = {};
       var stub = this.stubWithReturn({obj: obj, method: 'foo'});
       obj.foo();
       stub.foo.should.have.been.called;
-      testDone();
     });
 
-    it('should handle custom target object', function(testDone) {
+    it('should handle custom target object', function() {
       var obj = {foo: function() {}};
       var stub = this.stubWithReturn({obj: obj, method: 'foo'});
       stub.foo.should.not.have.been.called;
       stub.target.foo();
       stub.foo.should.have.been.called;
-      testDone();
     });
 
-    it('should handle missing target object', function(testDone) {
+    it('should handle missing target object', function() {
       var stub = this.stubWithReturn({method: 'foo'});
       stub.foo.should.not.have.been.called;
       stub.target.foo();
       stub.foo.should.have.been.called;
-      testDone();
     });
 
-    it('should handle plain-string spy name', function(testDone) {
+    it('should handle plain-string spy name', function() {
       var stub = this.stubWithReturn({method: 'foo', spies: 'bond'});
       var returned = stub.target.foo();
       returned.bond();
       returned.bond.should.have.been.called;
-      testDone();
     });
 
-    it('should handle namespace-string spy name', function(testDone) {
+    it('should handle namespace-string spy name', function() {
       var stub = this.stubWithReturn({method: 'foo', spies: 'james.bond'});
       var returned = stub.target.foo();
       returned.james.bond();
       returned.james.bond.should.have.been.called;
-      testDone();
     });
 
-    it('should handle namespace-string spy name array', function(testDone) {
+    it('should handle namespace-string spy name array', function() {
       var stub = this.stubWithReturn({method: 'foo', spies: ['j.a.m.e.s', 'b.o.n.d']});
       var returned = stub.target.foo();
       returned.j.a.m.e.s.should.not.have.been.called;
@@ -205,35 +193,54 @@ describe('sinon-doublist', function() {
       returned.b.o.n.d.should.not.have.been.called;
       returned.b.o.n.d();
       returned.b.o.n.d.should.have.been.called;
-      testDone();
     });
 
-    it('should handle plain-string spy name array', function(testDone) {
+    it('should handle plain-string spy name array', function() {
       var stub = this.stubWithReturn({method: 'foo', spies: ['james', 'bond']});
       var returned = stub.target.foo();
       returned.james();
       returned.james.should.have.been.called;
       returned.bond();
       returned.bond.should.have.been.called;
-      testDone();
     });
 
-    it('should handle expected args', function(testDone) {
+    it('should handle expected args', function() {
       var stub = this.stubWithReturn({method: 'foo', args: ['bar', 'baz']});
       should.not.exist(stub.target.foo());
       var spy = stub.target.foo('bar', 'baz');
       spy.should.not.have.been.called;
       spy();
       spy.should.have.been.called;
-      testDone();
     });
 
-    it('should handle custom stub return value', function(testDone) {
+    it('should handle custom stub return value', function() {
       var expected = noOp;
       var stub = this.stubWithReturn({method: 'foo', returns: expected});
       var returned = stub.target.foo();
       returned.should.deep.equal(expected);
-      testDone();
+    });
+  });
+
+  describe('#stubBind', function() {
+    beforeEach(function() {
+      this.target = function() {};
+      this.boundTarget = {iAmA: 'fake bound version of target'};
+      this.stubWithReturnSpy = this.spy(this, 'stubWithReturn');
+      this.bindStub = this.stubBind(this.target, null, 1, 2, 3).bind;
+      this.bindStub.returns(this.boundTarget);
+    });
+
+    it('should wrap stubWithReturn', function() {
+      this.stubWithReturnSpy.should.have.been.calledWithExactly(
+        {obj: this.target, method: 'bind', args: [null, 1, 2, 3]}
+      );
+    });
+
+    it('should stub bind', function() {
+      should.not.exist(this.target.bind(null, 3, 2, 1));
+      this.bindStub.called.should.equal(false);
+      this.target.bind(null, 1, 2, 3).should.deep.equal(this.boundTarget);
+      this.bindStub.called.should.equal(true);
     });
   });
 });

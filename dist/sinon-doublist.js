@@ -300,6 +300,13 @@
             }
             return doubles;
         };
+        mixin.stubBind = function(fn) {
+            return this.stubWithReturn.call(this, {
+                obj: fn,
+                method: "bind",
+                args: [].slice.call(arguments, 1)
+            });
+        };
         var adapters = {
             mocha: function(sinon, disableAutoSandbox) {
                 beforeEach(function(done) {

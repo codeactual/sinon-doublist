@@ -1,6 +1,6 @@
 # sinon-doublist
 
-[Sinon.JS](http://sinonjs.org/) test double mixins: [spyMany](#spymany), [stubMany](#stubmany), [stubWithReturn](#stubwithreturn)
+[Sinon.JS](http://sinonjs.org/) test double mixins: [spyMany](#spymany), [stubMany](#stubmany), [stubWithReturn](#stubwithreturn), [stubBind](#stubbind)
 
 * Double multiple methods in one call
 * [sinon.testCase](http://sinonjs.org/docs/#sandbox)-like auto-sandboxing
@@ -32,11 +32,11 @@ describe('myFunction', function() {
   beforeEach(function() {
     sinonDoublist(sinon, this);
   });
-  
+
   afterEach(function() {
     this.sandbox.restore();
   });
-  
+
   it('should do something', function() {
     // this.spyMany()
     // this.stubMany()
@@ -47,7 +47,7 @@ describe('myFunction', function() {
 
 ### `spyMany()`
 
-Creates spies for multiple methods, even though the latter do not exist yet. 
+Creates spies for multiple methods, even though the latter do not exist yet.
 
 ```js
 var spy = this.spyMany({}, ['a.b.methodA', 'c.e.methodB', 'd.e.methodC']);
@@ -81,6 +81,22 @@ stub = this.stubWithReturn({
 var spiesReturnedFromStub = obj.methodD();
 spiesReturnedFromStub.x.y.z('foo');
 spiesReturnedFromStub.x.y.z.called.should.equal(true);
+```
+
+### `stubBind()`
+
+```js
+function target() {}
+function fakeBoundTarget() {}
+
+var stub = this.stubBind(target, null, 1, 2, 3).bind;
+stub.bind.returns(fakeBoundTarget);
+
+target.bind(null, 3, 2, 1); // undefined
+console.log(stub.bind.called); // false
+
+target.bind(null, 1, 2, 3); // fakeBoundTarget
+console.log(stub.bind.called); // true
 ```
 
 ## Installation

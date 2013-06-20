@@ -39,7 +39,8 @@
     "mocha": "~1.10.0",
     "grunt-horde": "~0.3.1",
     "node-component-grunt": "git://github.com/codeactual/node-component-grunt.git",
-    "node-lib-grunt": "git://github.com/codeactual/node-lib-grunt.git"
+    "node-lib-grunt": "git://github.com/codeactual/node-lib-grunt.git",
+    "sinon-chai": "~2.4.0"
   },
   "scripts": {
     "test": "grunt test"

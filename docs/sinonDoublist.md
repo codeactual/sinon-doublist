@@ -10,6 +10,7 @@ _Source: [lib/sinon-doublist/index.js](../lib/sinon-doublist/index.js)_
 - <a name="toc_mixinspymanyobj-methods"></a>[mixin.spyMany](#mixinspymanyobj-methods)
 - <a name="toc_mixinstubmanyobj-methods"></a>[mixin.stubMany](#mixinstubmanyobj-methods)
 - <a name="toc_mixinstubwithreturnconfig"></a>[mixin.stubWithReturn](#mixinstubwithreturnconfig)
+- <a name="toc_mixinstubbindfn-args"></a>[mixin.stubBind](#mixinstubbindfn-args)
 
 <a name="module"></a>
 
@@ -125,6 +126,40 @@ of the picture to focus on the `foo()-bar()` relationship.
 - `{function} returnedSpy` **OR** `{object} returnedSpies`. Depends on whether `spies` is a `string` or `array`.
 - `{function} <method>` The created stub(s). The property name(s) will match `method`.
 - `{object} target` Input `obj`, or `{}` if `obj` was falsey
+
+<sub>Go: [TOC](#tableofcontents) | [mixin](#toc_mixin)</sub>
+
+# mixin.stubBind(fn, args*)
+
+> Stub a function's `bind` method w/ expected arguments.
+
+- Convenience wrapper around [mixin.stubWithReturn](#mixinstubwithreturnconfig).
+
+**Usage:**
+
+```js
+function target() {}
+function fakeBoundTarget() {}
+
+var stub = this.stubBind(target, null, 1, 2, 3).bind;
+stub.bind.returns(fakeBoundTarget);
+
+target.bind(null, 3, 2, 1); // undefined
+console.log(stub.bind.called); // false
+
+target.bind(null, 1, 2, 3); // fakeBoundTarget
+console.log(stub.bind.called); // true
+```
+
+**Parameters:**
+
+- `{function} fn`
+- `{mixed} args*` `bind` arguments
+  - They do not have to exist, e.g. `obj` may be `{}` for convenience.
+
+**Return:**
+
+`{object}` Same as [mixin.stubWithReturn](#mixinstubwithreturnconfig)
 
 <sub>Go: [TOC](#tableofcontents) | [mixin](#toc_mixin)</sub>
 
