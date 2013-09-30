@@ -1,3 +1,7 @@
+# 0.4.3
+
+- Upgrade `sinon` peer dependency to `~1.7.3`.
+
 # 0.4.2
 
 - feat(mixin): Add `stubBind`, a convenience wrapper around `stubWithReturn` to target a function's `bind` method.

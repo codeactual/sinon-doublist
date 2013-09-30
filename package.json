@@ -1,7 +1,7 @@
 {
   "name": "sinon-doublist",
   "description": "Sinon.JS test double mixins",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "main": "dist/sinon-doublist.js",
   "keywords": [
     "sinon",
@@ -26,7 +26,7 @@
     "url": "https://github.com/codeactual/sinon-doublist.git"
   },
   "peerDependencies": {
-    "sinon": "~1.7.2"
+    "sinon": "~1.7.3"
   },
   "devDependencies": {
     "chai": "~1.6.0",
@@ -45,5 +45,8 @@
   "scripts": {
     "test": "grunt test"
   },
-  "author": "David Smith <codeactual@gmail.com>"
+  "author": "David Smith <codeactual@gmail.com>",
+  "devdir-ci": {
+    "version": "1"
+  }
 }
