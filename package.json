@@ -1,7 +1,7 @@
 {
   "name": "sinon-doublist",
   "description": "Sinon.JS test double mixins",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "main": "dist/sinon-doublist.js",
   "keywords": [
     "sinon",
@@ -26,21 +26,21 @@
     "url": "https://github.com/codeactual/sinon-doublist.git"
   },
   "peerDependencies": {
-    "sinon": "~1.7.3"
+    "sinon": "^1.9.0"
   },
   "devDependencies": {
-    "chai": "~1.6.0",
-    "component": "~0.16.0",
+    "chai": "^1.9.0",
+    "component": "^0.19.7",
     "apidox": "~0.3.1",
     "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.5.4",
-    "grunt-contrib-uglify": "~0.2.0",
-    "grunt-shell": "~0.2.2",
-    "mocha": "~1.10.0",
-    "grunt-horde": "~0.3.1",
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-uglify": "^0.4.0",
+    "grunt-shell": "^0.6.4",
+    "mocha": "^1.18.0",
+    "grunt-horde": "^0.3.1",
     "node-component-grunt": "git://github.com/codeactual/node-component-grunt.git",
     "node-lib-grunt": "git://github.com/codeactual/node-lib-grunt.git",
-    "sinon-chai": "~2.4.0"
+    "sinon-chai": "^2.5.0"
   },
   "scripts": {
     "test": "grunt test"

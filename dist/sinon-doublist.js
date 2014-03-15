@@ -11,10 +11,14 @@
             throw err;
         }
         var module = require.modules[resolved];
-        if (!module.exports) {
-            module.exports = {};
-            module.client = module.component = true;
-            module.call(this, module.exports, require.relative(resolved), module);
+        if (!module._resolving && !module.exports) {
+            var mod = {};
+            mod.exports = {};
+            mod.client = mod.component = true;
+            module._resolving = true;
+            module.call(this, mod.exports, require.relative(resolved), mod);
+            delete module._resolving;
+            module.exports = mod.exports;
         }
         return module.exports;
     }
@@ -22,14 +26,11 @@
     require.aliases = {};
     require.resolve = function(path) {
         if (path.charAt(0) === "/") path = path.slice(1);
-        var index = path + "/index.js";
         var paths = [ path, path + ".js", path + ".json", path + "/index.js", path + "/index.json" ];
         for (var i = 0; i < paths.length; i++) {
             var path = paths[i];
             if (require.modules.hasOwnProperty(path)) return path;
-        }
-        if (require.aliases.hasOwnProperty(index)) {
-            return require.aliases[index];
+            if (require.aliases.hasOwnProperty(path)) return require.aliases[path];
         }
     };
     require.normalize = function(curr, path) {
@@ -334,7 +335,7 @@
     if (typeof exports == "object") {
         module.exports = require("sinon-doublist");
     } else if (typeof define == "function" && define.amd) {
-        define(function() {
+        define([], function() {
             return require("sinon-doublist");
         });
     } else {
