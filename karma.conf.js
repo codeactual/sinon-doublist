@@ -15,8 +15,12 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'lib/sinon-doublist/*.js',
-      'test/lib/sinon-doublist/index.js'
+      'node_modules/chai/chai.js',
+      'node_modules/sinon/pkg/sinon.js',
+      'node_modules/sinon-chai/lib/sinon-chai.js',
+      'lib/jquery.js',
+      'dist/sinon-doublist.js',
+      'test/mocha.js'
     ],
 
 
@@ -53,7 +57,7 @@ module.exports = function(config) {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
 
     // start these browsers
