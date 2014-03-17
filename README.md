@@ -130,9 +130,8 @@ console.log(stub.bind.called); // true
 ### Browser via [Karma](http://karma-runner.github.com/)
 
 * `npm install karma`
-* `karma start`
-* Browse `http://localhost:9876/`
-* `grunt build && karma run`
+* `grunt build && karma start`
+* Browse `http://localhost:9876/karma/`
 
 ### jQuery 2.0
 
