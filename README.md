@@ -133,8 +133,12 @@ console.log(stub.bind.called); // true
 * `grunt build && karma start`
 * Browse `http://localhost:9876/karma/`
 
-### jQuery 2.0
+#### jQuery 2.1.0
 
 Custom [build](lib/jquery.js) used in `karma` test:
 
-    grunt custom:-sizzle,-css,-effects,-offset,-dimensions,-deprecated,-ajax/script,-ajax/jsonp,-wrap,-event-alias
+    git clone git://github.com/jquery/jquery.git
+    git checkout 2.1.0
+    npm install
+    grunt custom:-sizzle,-css,-effects,-offset,-dimensions,-deprecated,-ajax/script,-ajax/jsonp,-wrap,-event-alias,-exports/amd
+    cp ./dist/jquery.min.js /path/to/sinon-doublist/lib/jquery.js
