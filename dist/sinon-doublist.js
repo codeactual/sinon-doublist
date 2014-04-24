@@ -1,90 +1,26 @@
 (function() {
-    function require(path, parent, orig) {
-        var resolved = require.resolve(path);
-        if (null == resolved) {
-            orig = orig || path;
-            parent = parent || "root";
-            var err = new Error('Failed to require "' + orig + '" from "' + parent + '"');
-            err.path = orig;
-            err.parent = parent;
-            err.require = true;
-            throw err;
-        }
-        var module = require.modules[resolved];
-        if (!module._resolving && !module.exports) {
-            var mod = {};
-            mod.exports = {};
-            mod.client = mod.component = true;
-            module._resolving = true;
-            module.call(this, mod.exports, require.relative(resolved), mod);
-            delete module._resolving;
-            module.exports = mod.exports;
+    function require(name) {
+        var module = require.modules[name];
+        if (!module) throw new Error('failed to require "' + name + '"');
+        if (!("exports" in module) && typeof module.definition === "function") {
+            module.client = module.component = true;
+            module.definition.call(this, module.exports = {}, module);
+            delete module.definition;
         }
         return module.exports;
     }
     require.modules = {};
-    require.aliases = {};
-    require.resolve = function(path) {
-        if (path.charAt(0) === "/") path = path.slice(1);
-        var paths = [ path, path + ".js", path + ".json", path + "/index.js", path + "/index.json" ];
-        for (var i = 0; i < paths.length; i++) {
-            var path = paths[i];
-            if (require.modules.hasOwnProperty(path)) return path;
-            if (require.aliases.hasOwnProperty(path)) return require.aliases[path];
-        }
-    };
-    require.normalize = function(curr, path) {
-        var segs = [];
-        if ("." != path.charAt(0)) return path;
-        curr = curr.split("/");
-        path = path.split("/");
-        for (var i = 0; i < path.length; ++i) {
-            if (".." == path[i]) {
-                curr.pop();
-            } else if ("." != path[i] && "" != path[i]) {
-                segs.push(path[i]);
-            }
-        }
-        return curr.concat(segs).join("/");
-    };
-    require.register = function(path, definition) {
-        require.modules[path] = definition;
-    };
-    require.alias = function(from, to) {
-        if (!require.modules.hasOwnProperty(from)) {
-            throw new Error('Failed to alias "' + from + '", it does not exist');
-        }
-        require.aliases[to] = from;
-    };
-    require.relative = function(parent) {
-        var p = require.normalize(parent, "..");
-        function lastIndexOf(arr, obj) {
-            var i = arr.length;
-            while (i--) {
-                if (arr[i] === obj) return i;
-            }
-            return -1;
-        }
-        function localRequire(path) {
-            var resolved = localRequire.resolve(path);
-            return require(resolved, parent, path);
-        }
-        localRequire.resolve = function(path) {
-            var c = path.charAt(0);
-            if ("/" == c) return path.slice(1);
-            if ("." == c) return require.normalize(p, path);
-            var segs = parent.split("/");
-            var i = lastIndexOf(segs, "deps") + 1;
-            if (!i) i = 0;
-            path = segs.slice(0, i + 1).join("/") + "/deps/" + path;
-            return path;
+    require.register = function(name, definition) {
+        require.modules[name] = {
+            definition: definition
         };
-        localRequire.exists = function(path) {
-            return require.modules.hasOwnProperty(localRequire.resolve(path));
-        };
-        return localRequire;
     };
-    require.register("manuelstofer-each/index.js", function(exports, require, module) {
+    require.define = function(name, exports) {
+        require.modules[name] = {
+            exports: exports
+        };
+    };
+    require.register("manuelstofer~each@master", function(exports, module) {
         "use strict";
         var nativeForEach = [].forEach;
         module.exports = function(obj, iterator, context) {
@@ -104,9 +40,9 @@
             }
         };
     });
-    require.register("codeactual-is/index.js", function(exports, require, module) {
+    require.register("codeactual~is@0.1.2", function(exports, module) {
         "use strict";
-        var each = require("each");
+        var each = require("manuelstofer~each@master");
         var types = [ "Arguments", "Function", "String", "Number", "Date", "RegExp", "Array" ];
         each(types, function(type) {
             var method = type === "Function" ? type : type.toLowerCase();
@@ -121,7 +57,7 @@
             return obj === Object(obj);
         };
     });
-    require.register("component-bind/index.js", function(exports, require, module) {
+    require.register("component~bind@9a55368", function(exports, module) {
         var slice = [].slice;
         module.exports = function(obj, fn) {
             if ("string" == typeof fn) fn = obj[fn];
@@ -132,7 +68,7 @@
             };
         };
     });
-    require.register("qualiancy-tea-properties/lib/properties.js", function(exports, require, module) {
+    require.register("qualiancy~tea-properties@0.1.0", function(exports, module) {
         var exports = module.exports = {};
         exports.get = function(obj, path) {
             var parsed = parsePath(path);
@@ -194,7 +130,7 @@
             }
         }
     });
-    require.register("sinon-doublist/lib/sinon-doublist/index.js", function(exports, require, module) {
+    require.register("sinon-doublist", function(exports, module) {
         "use strict";
         var browserEnv = typeof window === "object";
         module.exports = sinonDoublist;
@@ -210,9 +146,9 @@
                 test.createSandbox(sinon);
             }
         }
-        var is = require("is");
-        var bind = require("bind");
-        var properties = require("tea-properties");
+        var is = require("codeactual~is@0.1.2");
+        var bind = require("component~bind@9a55368");
+        var properties = require("qualiancy~tea-properties@0.1.0");
         var setPathValue = properties.set;
         var getPathValue = properties.get;
         var mixin = {};
@@ -321,16 +257,6 @@
         };
         function sinonDoublistNoOp() {}
     });
-    require.alias("codeactual-is/index.js", "sinon-doublist/deps/is/index.js");
-    require.alias("codeactual-is/index.js", "is/index.js");
-    require.alias("manuelstofer-each/index.js", "codeactual-is/deps/each/index.js");
-    require.alias("component-bind/index.js", "sinon-doublist/deps/bind/index.js");
-    require.alias("component-bind/index.js", "bind/index.js");
-    require.alias("qualiancy-tea-properties/lib/properties.js", "sinon-doublist/deps/tea-properties/lib/properties.js");
-    require.alias("qualiancy-tea-properties/lib/properties.js", "sinon-doublist/deps/tea-properties/index.js");
-    require.alias("qualiancy-tea-properties/lib/properties.js", "tea-properties/index.js");
-    require.alias("qualiancy-tea-properties/lib/properties.js", "qualiancy-tea-properties/index.js");
-    require.alias("sinon-doublist/lib/sinon-doublist/index.js", "sinon-doublist/index.js");
     if (typeof exports == "object") {
         module.exports = require("sinon-doublist");
     } else if (typeof define == "function" && define.amd) {
@@ -338,6 +264,6 @@
             return require("sinon-doublist");
         });
     } else {
-        this["sinonDoublist"] = require("sinon-doublist");
+        this["sinon-doublist"] = require("sinon-doublist");
     }
 })();

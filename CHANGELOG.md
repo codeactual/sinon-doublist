@@ -1,6 +1,7 @@
 # 0.5.0
 
 - fix(timers): Omit fake timers from auto-sandbox
+- chore(npm): Upgrade outdated dependencies
 
 # 0.4.3
 
