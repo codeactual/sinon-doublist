@@ -43,7 +43,7 @@
     "sinon-chai": "^2.5.0"
   },
   "scripts": {
-    "test": "grunt test --verbose"
+    "test": "grunt test"
   },
   "author": "David Smith <codeactual@gmail.com>",
   "devdir-ci": {
