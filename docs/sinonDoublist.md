@@ -44,11 +44,17 @@ _Source: [lib/sinon-doublist/index.js](../lib/sinon-doublist/index.js)_
 
 > Init sandbox and add its properties to the current context.
 
+- Unlike `sinon.sandbox.create`, timers are not faked. See "Gotchas" in README.md for more details.
+
 To restore: `this.sandbox.restore()`
 
 **Parameters:**
 
 - `{object} sinon`
+
+**See:**
+
+- [Gotchas](../README.md#gotchas)
 
 <sub>Go: [TOC](#tableofcontents) | [mixin](#toc_mixin)</sub>
 
