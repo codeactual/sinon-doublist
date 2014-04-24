@@ -9,7 +9,7 @@ if (browserEnv) {
 }
 
 var should = chai.should();
-chai.Assertion.includeStack = true;
+chai.config.includeStack = true;
 
 sinonDoublist(sinon, 'mocha');
 
