@@ -223,7 +223,6 @@
             this.spy = bind(self.sandbox, this.sandbox.spy);
             this.stub = bind(self.sandbox, this.sandbox.stub);
             this.mock = bind(self.sandbox, this.sandbox.mock);
-            this.clock = this.sandbox.useFakeTimers();
             this.server = this.sandbox.useFakeServer();
             if (browserEnv) {
                 this.requests = this.server.requests;

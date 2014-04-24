@@ -45,7 +45,7 @@ describe('sinon-doublist', function() {
       should.exist(this.spy);
       should.exist(this.stub);
       should.exist(this.mock);
-      should.exist(this.clock);
+      should.not.exist(this.clock);
       if (browserEnv) {
         should.exist(this.server);
         should.exist(this.requests);
@@ -76,11 +76,29 @@ describe('sinon-doublist', function() {
   });
 
   describe('clock', function() {
-    it('should be fake', function() {
+    it('should be real by default', function() {
+      Date.now().should.not.equal(0);
+    });
+
+    it('should be fake if enabled', function() {
+      Date.now().should.not.equal(0);
+      this.clock = this.sandbox.useFakeTimers();
+      Date.now().should.equal(0);
+
       var delta = 86400 * 1000;
       var then = Date.now();
       this.clock.tick(delta);
       Date.now().should.equal(then + delta);
+    });
+
+    it('should support disabling', function() {
+      Date.now().should.not.equal(0);
+      this.clock = this.sandbox.useFakeTimers();
+      Date.now().should.equal(0);
+      this.clock.tick(1);
+      Date.now().should.equal(1);
+      this.clock.restore();
+      Date.now().should.be.gte(1);
     });
   });
 

@@ -2,10 +2,10 @@
 
 [Sinon.JS](http://sinonjs.org/) test double mixins: [spyMany](#spymany), [stubMany](#stubmany), [stubWithReturn](#stubwithreturn), [stubBind](#stubbind)
 
-* Double multiple methods in one call
-* [sinon.testCase](http://sinonjs.org/docs/#sandbox)-like auto-sandboxing
-* Optional use of plain empty objects to hold method doubles
-* Method selection via `x.y.z` property path strings
+* Double multiple methods in one call.
+* Use [sinon.testCase](http://sinonjs.org/docs/#sandbox)-like auto-sandboxing.
+* Optionally use plain objects, even empty ones, to hold method doubles.
+* Select target methods `x.y.z` property path strings.
 
 [![Build Status](https://travis-ci.org/codeactual/sinon-doublist.png)](https://travis-ci.org/codeactual/sinon-doublist)
 
@@ -97,6 +97,18 @@ console.log(stub.bind.called); // false
 
 target.bind(null, 1, 2, 3); // fakeBoundTarget
 console.log(stub.bind.called); // true
+```
+
+## Gotchas
+
+### useFakeTimers and setImmediate
+
+As of 0.5.0, `useFakeTimers` is no longer enabled by default. `sinon` now fakes [setImmediate](https://github.com/cjohansen/Sinon.JS/pull/372) in that feature, which may cause confusion if automatically enabled.
+
+To enable:
+
+```js
+this.clock = this.sandbox.useFakeTimers();
 ```
 
 ## Installation
