@@ -1,3 +1,7 @@
+# 0.5.1
+
+- fix(global): Revert global name back to `sinonDoublist`
+
 # 0.5.0
 
 - fix(timers): Omit fake timers from auto-sandbox
