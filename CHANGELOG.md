@@ -2,6 +2,7 @@
 
 ## breaking
 
+- fix(npm): remove `peerDependency` on `sinon`
 - refactor(node): Migrate to ES6 features like `let` and `const`
   - Switch to `iojs` as only build target
 
