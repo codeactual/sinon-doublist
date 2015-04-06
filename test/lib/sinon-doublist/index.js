@@ -1,4 +1,9 @@
-var browserEnv = typeof window === 'object';
+/*eslint func-names: 0, new-cap: 0, no-unused-expressions: 0, no-wrap-func: 0*/
+/*global mocha:1 sinonDoublist:1 jQuery:1 sinon:1 chai:1 */
+
+'use strict';
+
+const browserEnv = typeof window === 'object'; // eslint-disable-line block-scoped-var
 
 if (browserEnv) {
   mocha.setup('bdd');
@@ -9,19 +14,17 @@ if (browserEnv) {
     ]
   });
 } else {
-  var chai = require('chai');
-  var sinon = require('sinon');
-  var sinonChai = require('sinon-chai');
-  var sinonDoublist = require('../../..');
+  const chai = require('chai');
+  const sinon = require('sinon'); // eslint-disable-line no-unused-vars
+  const sinonChai = require('sinon-chai');
+  const sinonDoublist = require('../../..'); // eslint-disable-line
   chai.use(sinonChai);
 }
 
-var should = chai.should();
-chai.Assertion.includeStack = true;
+const should = chai.should(); // eslint-disable-line
+chai.config.includeStack = true; // eslint-disable-line
 
 describe('sinon-doublist', function() {
-  'use strict';
-
   beforeEach(function(done) {
     sinonDoublist(sinon, this);
     done();
@@ -34,7 +37,7 @@ describe('sinon-doublist', function() {
 
   describe('mixin', function() {
     it('should respect auto-sandbox opt-out', function() {
-      var test = {};
+      const test = {};
       sinonDoublist(sinon, test, true);
       should.not.exist(test.sandbox);
     });
@@ -54,9 +57,9 @@ describe('sinon-doublist', function() {
 
     it('should init fake server', function(testDone) {
       if (!browserEnv) { testDone(); return; }
-      var payload = {foo: 'bar'};
-      var url = '/res';
-      var self = this;
+      const payload = {foo: 'bar'};
+      const url = '/res';
+      const self = this;
       jQuery.ajax({
         url: url,
         success: function(response) {
@@ -85,8 +88,8 @@ describe('sinon-doublist', function() {
       this.clock = this.sandbox.useFakeTimers();
       Date.now().should.equal(0);
 
-      var delta = 86400 * 1000;
-      var then = Date.now();
+      const delta = 86400 * 1000;
+      const then = Date.now();
       this.clock.tick(delta);
       Date.now().should.equal(then + delta);
     });
@@ -104,9 +107,9 @@ describe('sinon-doublist', function() {
 
   describe('#spyMany', function() {
     it('should proxy to _doubleMany', function() {
-      var realCalled = false;
-      var obj = {fn: function() { realCalled = true; }};
-      var spy = this.spyMany(obj, 'fn');
+      const realCalled = false;
+      const obj = {fn: function() { realCalled = true; }};
+      const spy = this.spyMany(obj, 'fn');
       spy.fn();
       realCalled.should.equal(true);
       spy.fn.called.should.equal(true);
@@ -115,9 +118,9 @@ describe('sinon-doublist', function() {
 
   describe('#stubMany', function() {
     it('should proxy to _doubleMany', function() {
-      var realCalled = false;
-      var obj = {fn: function() { realCalled = true; }};
-      var stub = this.stubMany(obj, 'fn');
+      const realCalled = false;
+      const obj = {fn: function() { realCalled = true; }};
+      const stub = this.stubMany(obj, 'fn');
       stub.fn();
       realCalled.should.equal(false);
       stub.fn.called.should.equal(true);
@@ -126,12 +129,12 @@ describe('sinon-doublist', function() {
 
   describe('#_doubleMany', function() {
     it('should accept multiple method names', function() {
-      var called = [];
-      var obj = {
+      const called = [];
+      const obj = {
         x: function() { called.push('x'); },
         y: function() { called.push('y'); }
       };
-      var spy = this.spyMany(obj, ['x', 'y']);
+      const spy = this.spyMany(obj, ['x', 'y']);
       spy.x();
       called.should.deep.equal(['x']);
       spy.x.called.should.equal(true);
@@ -141,17 +144,17 @@ describe('sinon-doublist', function() {
     });
 
     it('should accept method path', function() {
-      var realCalled = false;
-      var obj = {x: {y: {z: function() { realCalled = true; }}}};
-      var stub = this.stubMany(obj, 'x.y.z');
+      const realCalled = false;
+      const obj = {x: {y: {z: function() { realCalled = true; }}}};
+      const stub = this.stubMany(obj, 'x.y.z');
       stub['x.y.z']();
       realCalled.should.equal(false);
       stub['x.y.z'].called.should.equal(true);
     });
 
     it('should auto-create method if needed', function() {
-      var obj = {};
-      var stub = this.stubMany(obj, 'fn');
+      const obj = {};
+      const stub = this.stubMany(obj, 'fn');
       stub.fn.called.should.equal(false);
       stub.fn();
       stub.fn.called.should.equal(true);
@@ -160,51 +163,51 @@ describe('sinon-doublist', function() {
 
   describe('#stubWithReturn', function() {
     it('should detect unspecified method', function() {
-      var self = this;
+      const self = this;
       (function() {
         self.stubWithReturn();
       }).should.Throw(Error, 'method not specified');
     });
 
     it('should handle non-existent method', function() {
-      var obj = {};
-      var stub = this.stubWithReturn({obj: obj, method: 'foo'});
+      const obj = {};
+      const stub = this.stubWithReturn({obj: obj, method: 'foo'});
       obj.foo();
       stub.foo.should.have.been.called;
     });
 
     it('should handle custom target object', function() {
-      var obj = {foo: function() {}};
-      var stub = this.stubWithReturn({obj: obj, method: 'foo'});
+      const obj = {foo: function() {}};
+      const stub = this.stubWithReturn({obj: obj, method: 'foo'});
       stub.foo.should.not.have.been.called;
       stub.target.foo();
       stub.foo.should.have.been.called;
     });
 
     it('should handle missing target object', function() {
-      var stub = this.stubWithReturn({method: 'foo'});
+      const stub = this.stubWithReturn({method: 'foo'});
       stub.foo.should.not.have.been.called;
       stub.target.foo();
       stub.foo.should.have.been.called;
     });
 
     it('should handle plain-string spy name', function() {
-      var stub = this.stubWithReturn({method: 'foo', spies: 'bond'});
-      var returned = stub.target.foo();
+      const stub = this.stubWithReturn({method: 'foo', spies: 'bond'});
+      const returned = stub.target.foo();
       returned.bond();
       returned.bond.should.have.been.called;
     });
 
     it('should handle namespace-string spy name', function() {
-      var stub = this.stubWithReturn({method: 'foo', spies: 'james.bond'});
-      var returned = stub.target.foo();
+      const stub = this.stubWithReturn({method: 'foo', spies: 'james.bond'});
+      const returned = stub.target.foo();
       returned.james.bond();
       returned.james.bond.should.have.been.called;
     });
 
     it('should handle namespace-string spy name array', function() {
-      var stub = this.stubWithReturn({method: 'foo', spies: ['j.a.m.e.s', 'b.o.n.d']});
-      var returned = stub.target.foo();
+      const stub = this.stubWithReturn({method: 'foo', spies: ['j.a.m.e.s', 'b.o.n.d']});
+      const returned = stub.target.foo();
       returned.j.a.m.e.s.should.not.have.been.called;
       returned.j.a.m.e.s();
       returned.j.a.m.e.s.should.have.been.called;
@@ -214,8 +217,8 @@ describe('sinon-doublist', function() {
     });
 
     it('should handle plain-string spy name array', function() {
-      var stub = this.stubWithReturn({method: 'foo', spies: ['james', 'bond']});
-      var returned = stub.target.foo();
+      const stub = this.stubWithReturn({method: 'foo', spies: ['james', 'bond']});
+      const returned = stub.target.foo();
       returned.james();
       returned.james.should.have.been.called;
       returned.bond();
@@ -223,18 +226,18 @@ describe('sinon-doublist', function() {
     });
 
     it('should handle expected args', function() {
-      var stub = this.stubWithReturn({method: 'foo', args: ['bar', 'baz']});
+      const stub = this.stubWithReturn({method: 'foo', args: ['bar', 'baz']});
       should.not.exist(stub.target.foo());
-      var spy = stub.target.foo('bar', 'baz');
+      const spy = stub.target.foo('bar', 'baz');
       spy.should.not.have.been.called;
       spy();
       spy.should.have.been.called;
     });
 
     it('should handle custom stub return value', function() {
-      var expected = noOp;
-      var stub = this.stubWithReturn({method: 'foo', returns: expected});
-      var returned = stub.target.foo();
+      const expected = noOp;
+      const stub = this.stubWithReturn({method: 'foo', returns: expected});
+      const returned = stub.target.foo();
       returned.should.deep.equal(expected);
     });
   });
