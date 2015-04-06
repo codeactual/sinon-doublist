@@ -1,7 +1,8 @@
 /*eslint func-names: 0, new-cap: 0, no-unused-expressions: 0, no-wrap-func: 0*/
-/*global mocha:1 sinonDoublist:1 jQuery:1 sinon:1 chai:1 */
+/*global mocha, sinonDoublist, jQuery, sinon, chai */
 
-'use strict';
+// For some reason eslint is reporting no-unused-vars for sinon/chai/sinonDoublist on this line:
+'use strict'; // eslint-disable-line
 
 const browserEnv = typeof window === 'object'; // eslint-disable-line block-scoped-var
 
@@ -14,26 +15,27 @@ if (browserEnv) {
     ]
   });
 } else {
-  const chai = require('chai');
-  const sinon = require('sinon'); // eslint-disable-line no-unused-vars
-  const sinonChai = require('sinon-chai');
-  const sinonDoublist = require('../../..'); // eslint-disable-line
+  var chai = require('chai');// eslint-disable-line
+  var sinon = require('sinon'); // eslint-disable-line
+  var sinonChai = require('sinon-chai');// eslint-disable-line
+  var sinonDoublist = require('../../..'); // eslint-disable-line
   chai.use(sinonChai);
 }
 
 const should = chai.should(); // eslint-disable-line
 chai.config.includeStack = true; // eslint-disable-line
 
-describe('sinon-doublist', function() {
-  beforeEach(function(done) {
-    sinonDoublist(sinon, this);
-    done();
-  });
+function initSinonDoublist() {
+  sinonDoublist(sinon, this);
+}
 
-  afterEach(function(done) {
-    this.sandbox.restore();
-    done();
-  });
+function cleanupSinonDoublist() {
+  this.sandbox.restore();
+}
+
+describe('sinon-doublist', function() {
+  beforeEach(initSinonDoublist);
+  afterEach(cleanupSinonDoublist);
 
   describe('mixin', function() {
     it('should respect auto-sandbox opt-out', function() {
@@ -107,7 +109,7 @@ describe('sinon-doublist', function() {
 
   describe('#spyMany', function() {
     it('should proxy to _doubleMany', function() {
-      const realCalled = false;
+      let realCalled = false;
       const obj = {fn: function() { realCalled = true; }};
       const spy = this.spyMany(obj, 'fn');
       spy.fn();
@@ -118,7 +120,7 @@ describe('sinon-doublist', function() {
 
   describe('#stubMany', function() {
     it('should proxy to _doubleMany', function() {
-      const realCalled = false;
+      let realCalled = false;
       const obj = {fn: function() { realCalled = true; }};
       const stub = this.stubMany(obj, 'fn');
       stub.fn();
@@ -144,7 +146,7 @@ describe('sinon-doublist', function() {
     });
 
     it('should accept method path', function() {
-      const realCalled = false;
+      let realCalled = false;
       const obj = {x: {y: {z: function() { realCalled = true; }}}};
       const stub = this.stubMany(obj, 'x.y.z');
       stub['x.y.z']();
@@ -243,6 +245,10 @@ describe('sinon-doublist', function() {
   });
 
   describe('#stubBind', function() {
+    // Unclear why this extra cleanup became necessary somewhere between mocha 1.18.2 and 2.2.1
+    beforeEach(initSinonDoublist);
+    afterEach(cleanupSinonDoublist);
+
     beforeEach(function() {
       this.target = function() {};
       this.boundTarget = {iAmA: 'fake bound version of target'};

@@ -1,16 +1,17 @@
 /*eslint func-names: 0, new-cap: 0, no-unused-expressions: 0, no-wrap-func: 0*/
-/*global mocha:1 sinon:1 chai:1 sinonDoublist:1 */
+/*global mocha, chai, sinonDoublist */
 
-'use strict';
+// For some reason eslint is reporting no-unused-vars for sinon/sinonDoublist on this line:
+'use strict'; // eslint-disable-line
 
 const browserEnv = typeof window === 'object'; // eslint-disable-line block-scoped-var
 
 if (browserEnv) {
   mocha.setup('bdd');
 } else {
-  const sinon = require('sinon'); // eslint-disable-line no-unused-vars
-  const chai = require('chai'); // eslint-disable-line no-unused-vars
-  const sinonDoublist = require('..'); // eslint-disable-line no-unused-vars
+  var sinon = require('sinon'); // eslint-disable-line
+  var chai = require('chai'); // eslint-disable-line
+  var sinonDoublist = require('..'); // eslint-disable-line
 }
 
 const should = chai.should();
