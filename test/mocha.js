@@ -1,21 +1,24 @@
-var browserEnv = typeof window === 'object';
+/*eslint func-names: 0, new-cap: 0, no-unused-expressions: 0, no-wrap-func: 0*/
+/*global mocha:1 sinon:1 chai:1 sinonDoublist:1 */
+
+'use strict';
+
+const browserEnv = typeof window === 'object'; // eslint-disable-line block-scoped-var
 
 if (browserEnv) {
   mocha.setup('bdd');
 } else {
-  var sinon = require('sinon');
-  var chai = require('chai');
-  var sinonDoublist = require('..');
+  const sinon = require('sinon'); // eslint-disable-line no-unused-vars
+  const chai = require('chai'); // eslint-disable-line no-unused-vars
+  const sinonDoublist = require('..'); // eslint-disable-line no-unused-vars
 }
 
-var should = chai.should();
+const should = chai.should();
 chai.config.includeStack = true;
 
-sinonDoublist(sinon, 'mocha');
+sinonDoublist(sinon, 'mocha'); // eslint-disable-line
 
 describe('sinon-doublist global injection for mocha', function() {
-  'use strict';
-
   before(function(done) {
     this.target = function() { return true; };
     done();
