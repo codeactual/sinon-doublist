@@ -1,3 +1,15 @@
+# 0.6.0
+
+## breaking
+
+- refactor(node): Migrate to ES6 features like `let` and `const`
+  - Switch to `iojs` as only build target
+
+## non-breaking
+
+- refactor(component): Migrate to NPM-only deps
+- refactor(eslint): Migrate to eslint
+
 # 0.5.1
 
 - fix(global): Revert global name back to `sinonDoublist`
