@@ -26,17 +26,17 @@
     "url": "https://github.com/codeactual/sinon-doublist.git"
   },
   "devDependencies": {
-    "chai": "^1.9.1",
-    "apidox": "^0.3.6",
-    "grunt": "^0.4.4",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-uglify": "^0.4.0",
-    "grunt-shell": "^0.6.4",
-    "mocha": "^1.18.2",
-    "grunt-horde": "^0.3.3",
-    "node-component-grunt": "git://github.com/codeactual/node-component-grunt.git",
-    "node-lib-grunt": "git://github.com/codeactual/node-lib-grunt.git",
-    "sinon-chai": "^2.5.0"
+    "apidox": "^0.3.7",
+    "chai": "^2.2.0",
+    "grunt": "^0.4.5",
+    "grunt-eslint": "^10.0.0",
+    "grunt-horde": "^0.4.0",
+    "grunt-jsonlint": "^1.0.4",
+    "grunt-shell": "^1.1.2",
+    "mocha": "^2.2.1",
+    "node-component-grunt": "git://github.com/codeactual/node-component-grunt.git@0.2.6",
+    "node-lib-grunt": "git://github.com/codeactual/node-lib-grunt.git#0.2.3",
+    "sinon-chai": "^2.7.0"
   },
   "scripts": {
     "test": "grunt test"
