@@ -2,7 +2,7 @@
   "name": "sinon-doublist",
   "description": "Sinon.JS test double mixins",
   "version": "0.6.0",
-  "main": "dist/sinon-doublist.js",
+  "main": "index.js",
   "keywords": [
     "sinon",
     "test",
@@ -45,5 +45,9 @@
   "files": [
     "index.js",
     "lib"
-  ]
+  ],
+  "dependencies": {
+    "is": "^3.0.1",
+    "pathval": "^0.1.1"
+  }
 }
