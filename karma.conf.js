@@ -1,9 +1,10 @@
 // Karma configuration
 // Generated on Mon Mar 17 2014 00:00:04 GMT+0000 (UTC)
 
-module.exports = function(config) {
-  config.set({
+'use strict';
 
+module.exports = function exports(config) {
+  const pairs = {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
@@ -19,7 +20,7 @@ module.exports = function(config) {
       'node_modules/sinon/pkg/sinon.js',
       'node_modules/sinon-chai/lib/sinon-chai.js',
       'lib/jquery.js',
-      'dist/sinon-doublist.js',
+      'index.js',
       'test/mocha.js'
     ],
 
@@ -67,8 +68,19 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: false
+  };
 
-    urlRoot: '/karma'
-  });
+  // Support local overrides that are ignored by git.
+  const fs = require('fs');
+  const path = require('path');
+  const localFile = path.join(__dirname, '/karma-local.conf.js');
+  if (fs.existsSync(localFile)) {
+    const local = require(localFile);
+    Object.keys(local).forEach(function forEachKey(key) {
+      pairs[key] = local[key];
+    });
+  }
+
+  config.set(pairs);
 };

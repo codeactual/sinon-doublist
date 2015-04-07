@@ -141,8 +141,9 @@ this.clock = this.sandbox.useFakeTimers();
 
 ### Browser via [Karma](http://karma-runner.github.com/)
 
-* `npm install karma`
-* `grunt build && karma start`
+* `npm install karma karma-mocha`
+* Optionally create `karma-local.conf.js` that exports an object with custom `karma` config key/value pairs.
+* `./node_modules/karma/bin/karma start`
 * Browse `http://localhost:9876/karma/`
 
 #### jQuery 2.1.0
