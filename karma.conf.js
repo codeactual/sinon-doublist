@@ -20,7 +20,7 @@ module.exports = function exports(config) {
       'node_modules/sinon/pkg/sinon.js',
       'node_modules/sinon-chai/lib/sinon-chai.js',
       'lib/jquery.js',
-      'index.js',
+      'dist/sinon-doublist.js',
       'test/mocha.js'
     ],
 
