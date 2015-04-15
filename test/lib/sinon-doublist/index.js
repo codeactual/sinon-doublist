@@ -4,7 +4,7 @@
 // For some reason eslint is reporting no-unused-vars for sinon/chai/sinonDoublist on this line:
 'use strict'; // eslint-disable-line
 
-var browserEnv = typeof window === 'object'; // eslint-disable-line block-scoped-var
+var browserEnv = typeof window === 'object'; // eslint-disable-line
 
 if (browserEnv) {
   mocha.setup('bdd');
