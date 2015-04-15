@@ -2,4 +2,4 @@ language: node_js
 node_js:
   - "iojs"
 before_script:
-  - npm install grunt-cli@0.13.1 sinon@1.14.1
+  - npm install grunt-cli@0.1.13 sinon@1.14.1
