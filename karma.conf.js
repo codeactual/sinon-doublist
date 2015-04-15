@@ -21,7 +21,8 @@ module.exports = function exports(config) {
       'node_modules/sinon-chai/lib/sinon-chai.js',
       'lib/jquery.js',
       'dist/sinon-doublist.js',
-      'test/mocha.js'
+      'test/mocha.js',
+      'test/lib/sinon-doublist/index.js'
     ],
 
 
