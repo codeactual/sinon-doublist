@@ -113,13 +113,13 @@ this.clock = this.sandbox.useFakeTimers();
 
 ## Installation
 
-### [component](https://github.com/component/component)
-
-    component install codeactual/sinon-doublist
-
 ### [NPM](https://npmjs.org/package/sinon-doublist)
 
     npm install sinon-doublist
+
+### In browsers
+
+`dist/sinon-doublist.js` provides a `sinonDoublist` global that is the same object available in the node environment via `require('sinon-doublist)`.
 
 ## Related Projects
 

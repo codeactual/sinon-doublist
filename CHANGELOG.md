@@ -9,6 +9,7 @@
 ## non-breaking
 
 - refactor(component): Migrate to NPM-only deps
+  - Use browserify to build `dist/sinon-doublist.js`
 - refactor(eslint): Migrate to eslint
 
 # 0.5.1
